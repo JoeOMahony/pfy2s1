@@ -1,4 +1,44 @@
+/*
+CategoryUtility
+
+The static field, categories is an ArrayList of String and,
+ at declaration time, defines the ArrayList values of:
+Home
+Work
+Hobby
+Holiday
+College
+
+Hints for initialising an ArrayList at declaration time: https://www.geeksforgeeks.org/initialize-an-arraylist-in-java/
+There are two static methods in it:
+- getCategories() - a basic accessor that returns the categories ArrayList.
+- isValidCategory(String) - a basic validation method that
+    takes in a category as a parameter and checks to see if
+    it exists in the categories ArrayList. If it exists,
+    return true. Having looked at each element in the
+    ArrayList, if it doesn’t exist, return false.
+
+This utility class can be used to validate the category
+    when reading it from the user (isValidCategory).
+
+It can also be used to print out valid categories to the
+ user (getCategories).
+ */
+
 package utils;
 
+import java.util.ArrayList;
+
 public class CategoryUtility {
+    public static ArrayList<String> getCategories() {
+
+    }
+
+    public static boolean isValidCategory(String category) {
+
+    }
+
+    private static ArrayList<String> categories = new ArrayList<String>() {
+
+    }
 }

@@ -1,8 +1,13 @@
 package controllers;
 
+import models.Item;
 import models.Note;
 
 import java.util.ArrayList;
+
+import static utils.CategoryUtility.isValidCategory;
+import static utils.Utilities.YNtoBoolean;
+import static utils.Utilities.validRange;
 
 public class NoteAPI {
     // The responsibility for the NoteAPI class is to manage the ArrayList of notes.
@@ -16,6 +21,7 @@ public class NoteAPI {
     public boolean add(Note note) {
         //This method adds a note object to the ArrayList notes and returns
         // the boolean result of the add.
+        return notes.add(note);
     }
 
     public boolean updateNote(int indexToUpdate, String noteTitle, int notePriority, String noteCategory) {
@@ -27,12 +33,23 @@ This method should attempt to retrieve the note stored at the index number passe
      the note with the details passed in the parameter list. Finally, return
      true to indicate a successful update.
  */
+        if (isValidIndex(indexToUpdate)) {
+            notes.get(indexToUpdate).setNoteTitle(noteTitle);
+            notes.get(indexToUpdate).setNotePriority(notePriority);
+            notes.get(indexToUpdate).setNoteCategory(noteCategory);
+            return true;
+        }
+        return false;
     }
 
     public Note deleteNote(int indexToDelete) {
         /* This method deletes an note at the index parameter (if that index exists)
            and returns the deleted note object. If the index does not exist in the
            notes list, then null should be returned. */
+        if (isValidIndex(indexToDelete)) {
+            return notes.remove(indexToDelete);
+        }
+        return null;
     }
 
     public boolean archiveNote(int indexToArchive) {
@@ -44,16 +61,47 @@ is returned. If the note exists, but is already archived or items on the note
 are still TODO, return false.
 ==>> invalid, return false.
  */
+        if (isValidIndex(indexToArchive)) {
+            Note noteToArchive = notes.get(indexToArchive);
+            if (!(noteToArchive.isNoteArchived()) && (noteToArchive.checkNoteCompletionStatus())) {
+                noteToArchive.setNoteArchived(true);
+                return true;
+            }
+        }
+        return false;
     }
 
     public String archiveNotesWithAllItemsComplete() {
 /*
 This method first checks that active notes are in the ArrayList. ==>>If:
 ==>> no active notes exist, return “No active notes stored”.
-==>> active notes exist, for every active note, if ALL items in the note are complete, archive the note. Also build a String of all newly archived notes and return it.
+==>> active notes exist, for every active note, if ALL items in the note are complete,
+archive the note. Also build a String of all newly archived notes and return it.
 
 Hint: remember we wrote a method in Item - checkNoteCompletionStatus()
  */
+        if ((notes == null) || (notes.isEmpty()) || (numberOfActiveNotes() == 0)) {
+            return "No active notes stored";
+        }
+
+        String archivedNotesString = "Archived Notes:\n";
+        boolean archivedANoteFlag = false;
+
+        for (Note note : notes) {
+            if (!(note.isNoteArchived()) && (note.checkNoteCompletionStatus())) {
+                archivedANoteFlag = true;
+                note.setNoteArchived(true);
+                archivedNotesString += note.toString();
+            }
+        }
+
+        if (archivedANoteFlag) {
+            return archivedNotesString;
+        }
+        else { // Runs only if there are active notes, but no active note is archived
+            return "No active notes eligible for archive";
+        }
+
     }
 
 // -------------- END OF CRUD METHODS --------------
@@ -62,41 +110,140 @@ Hint: remember we wrote a method in Item - checkNoteCompletionStatus()
 
     public int numberOfNotes() {
 //returns the number of notes stored in the notes ArrayList.
+        return notes.size();
     }
 
     public int numberOfArchivedNotes() {
 // returns the number of ARCHIVED notes stored in the notes ArrayList
 // (i.e. where isNoteArchived is set to true).
+        int archiveCtr = 0;
+        if ((notes == null) || (notes.isEmpty())) {
+            return archiveCtr;
+        }
+        else {
+            for (Note note : notes) {
+                if (note.isNoteArchived()) {
+                    archiveCtr++;
+                }
+            }
+            return archiveCtr;
+        }
     }
 
     public int numberOfActiveNotes() {
 // returns the number of ACTIVE notes stored in the notes ArrayList
 // (i.e. where isNoteArchived is set to false).
+        int activeCtr = 0;
+        if ((notes == null) || (notes.isEmpty())) {
+            return activeCtr;
+        }
+        else {
+            for (Note note : notes) {
+                if (!(note.isNoteArchived())) {
+                    activeCtr++;
+                }
+            }
+            return activeCtr;
+        }
     }
 
     public int numberOfNotesByCategory(String category) {
 // returns the number of notes that are stored for the category passed as a
 // parameter.
+        int categoryCtr = 0;
+        if ((notes == null) || (notes.isEmpty())) {
+            return categoryCtr;
+        }
+        else {
+            if (isValidCategory(category)) {
+                for (Note note : notes) {
+                    if (note.getNoteCategory().equals(category)) {
+                        categoryCtr++;
+                    }
+                }
+            }
+            return categoryCtr;
+        }
     }
 
     public int numberOfNotesByPriority(int priority) {
 // returns the number of notes that are stored for the priority passed
 // as a parameter.
+        int priorityCtr = 0;
+        if ((notes == null) || (notes.isEmpty())) {
+            return priorityCtr;
+        }
+        else {
+            if (validRange(priority, 1, 5)) {
+                for (Note note : notes) {
+                    if (note.getNotePriority() == priority) {
+                        priorityCtr++;
+                    }
+                }
+            }
+            return priorityCtr;
+        }
     }
 
     public int numberOfItems() {
 // adds up the number of items stored on ALL the notes in the ArrayList
 // and returns it.
+        int totalItemsCtr = 0;
+        if ((notes == null) || (notes.isEmpty())) {
+            return totalItemsCtr;
+        }
+        else {
+            for (Note note : notes) {
+                totalItemsCtr += note.getItems().size();
+            }
+            return totalItemsCtr;
+        }
     }
 
     public int numberOfCompleteItems() {
 // adds up the number of items stored on ALL the notes in the ArrayList where
 // isItemCompleted is set to true. The number is then returned.
+        int totalItemsCompleteCtr = 0;
+        if ((notes == null) || (notes.isEmpty())) {
+            return totalItemsCompleteCtr;
+        }
+        else {
+            for (Note note : notes) {
+                if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
+                    // getItems() doesn't check in Note class
+                    for (Item item : note.getItems()) {
+                        if (item.isItemCompleted()) {
+                            totalItemsCompleteCtr++;
+                        }
+                    }
+                }
+                // else {} empty here
+            }
+            return totalItemsCompleteCtr;
+        }
     }
 
     public int numberOfTodoItems() {
 // adds up the number of items stored on ALL the notes in the ArrayList where
 // isItemCompleted is set to false. The number is then returned.
+        int totalItemsToDoCtr = 0;
+        if ((notes == null) || (notes.isEmpty())) {
+            return totalItemsToDoCtr;
+        }
+        else {
+            for (Note note : notes) {
+                if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
+                    // getItems() doesn't check in Note class
+                    for (Item item : note.getItems()) {
+                        if (!(item.isItemCompleted())) {
+                            totalItemsToDoCtr++;
+                        }
+                    }
+                }
+                // else {} empty here
+            }
+            return totalItemsToDoCtr;
+        }
     }
 
 // -------------- END OF COUNTING METHODS --------------
@@ -110,6 +257,18 @@ Hint: remember we wrote a method in Item - checkNoteCompletionStatus()
     ==>> not empty, a String is returned that contains a list of all notes
          (including their index number)
  */
+        if ((notes == null) || (notes.isEmpty())) {
+            return "No notes stored";
+        }
+
+        String allNotes = "";
+
+        for (int i = 0; i < notes.size(); i++) {
+            Note note = notes.get(i);
+            allNotes += i + ": " + note.toString();
+        }
+
+        return allNotes;
     }
 
     public String listActiveNotes() {
@@ -120,6 +279,19 @@ If the notes ArrayList is checked to see if Active notes are stored.
         (including their index number).
     ==>>don’t exist, the String “No active notes stored” is returned.
  */
+        if ((notes == null) || (notes.isEmpty()) || (numberOfActiveNotes() == 0)) {
+            return "No active notes stored";
+        }
+
+        String activeNotes = "";
+
+        for (Note note : notes) {
+            if (note.isNoteArchived() == false) {
+                activeNotes += notes.indexOf(note) + ": " + note.toString();
+            }
+        }
+
+        return activeNotes;
     }
 
     public String listArchivedNotes() {
@@ -127,6 +299,18 @@ If the notes ArrayList is checked to see if Active notes are stored.
 The functionality of this method is the same as the listActiveNotes()
 functionality, except you are dealing with Archived notes, not active ones.
  */
+        if ((notes == null) || (notes.isEmpty()) || (numberOfArchivedNotes() == 0)) {
+            return "No archived notes stored";
+        }
+
+        String archivedNotes = "";
+
+        for (Note note : notes) {
+            if (note.isNoteArchived()) {
+                archivedNotes += notes.indexOf(note) + ": " + note.toString();
+            }
+        }
+        return archivedNotes;
     }
 
     public String listNotesBySelectedCategory(String category) {
@@ -149,6 +333,27 @@ functionality, except you are dealing with Archived notes, not active ones.
               0: Book flights. [Completed]
               1: Book hotel. [Completed]
  */
+        if ((notes == null) || (notes.isEmpty())) {
+            return "No notes stored";
+        }
+        category = category.toLowerCase(); // had to change below else if to if because of this
+
+        if (!(isValidCategory(category)) || (numberOfNotesByCategory(category) == 0)) {
+            return "No notes with category " + category;
+        }
+
+        String notesByCategory = "";
+
+        int categoryNoteCount = numberOfNotesByCategory(category);
+        notesByCategory += categoryNoteCount + " notes with category " + category.toUpperCase() + ":\n";
+
+        for (int i = 0; i < notes.size(); i++) {
+            Note note = notes.get(i);
+            if (note.getNoteCategory().equals(category)) {
+                notesByCategory += notes.indexOf(note) + ": " + note.toString();
+            }
+        }
+        return notesByCategory;
     }
 
     public String listNotesBySelectedPriority(int priority) {
@@ -157,6 +362,26 @@ The functionality of this method is the same as the
  listNotesBySelectedCategory(String category) functionality, except you are
  dealing with Priority, not Category.
  */
+        if ((notes == null) || (notes.isEmpty())) {
+            return "No notes stored";
+        }
+
+        if (!(validRange(priority, 1, 5)) || (numberOfNotesByPriority(priority) == 0)) {
+            return "No notes with priority " + priority;
+        }
+
+        String notesByPriority = "";
+
+        int priorityNoteCount = numberOfNotesByPriority(priority);
+        notesByPriority += priorityNoteCount + " notes with priority " + priority + ":\n";
+
+        for (int i = 0; i < notes.size(); i++) {
+            Note note = notes.get(i);
+            if (note.getNotePriority() == priority) {
+                notesByPriority += notes.indexOf(note) + ": " + note.toString();
+            }
+        }
+        return notesByPriority;
     }
 
     public String listTodoItems() {
@@ -164,11 +389,29 @@ The functionality of this method is the same as the
 ==>> If the notes list is:
     ==>> empty, the String “No notes stored” is returned.
     ==>> not empty, for every note, for all TODO items, add the note title and
-         the TODO item to a String. This String is then returned. Sample output
-         could be:
+         the TODO item to a String. This String is then returned.
+              Sample output could be:
          School Run: Primary School 2:30. [TODO]
          Hoover House: Hoover Upstairs. [TODO]
  */
+        if ((notes == null) || (notes.isEmpty()) || (numberOfTodoItems() == 0)) {
+            return "No notes stored";
+        }
+
+        String todoItems = "";
+
+        for (Note note : notes) {
+                    if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
+                        // getItems() doesn't check in Note class
+                        for (Item item : note.getItems()) {
+                            if (!(item.isItemCompleted())) {
+                                todoItems += note.getNoteTitle() + " " + item.toString() + "\n";
+                            }
+                        }
+                    }
+                    // else {} empty here
+                }
+        return todoItems;
     }
 
     public String listItemStatusByCategory(String category) {
@@ -242,8 +485,9 @@ This helper method will be used by several methods below,
 isValidIndex(int) - This method checks that the index, passed as a parameter
 is a valid index in the notes ArrayList. If it is a valid index, return true.
  If invalid, return false.
- */
 
+ */
+        return (validRange(index, 0, (this.notes.size()) - 1));
     }
 
     // -------------- TWO PERSISTENCE METHODS  --------------

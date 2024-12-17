@@ -244,7 +244,7 @@ Book Holiday, Priority=5, Category=Home, Archived=N
                 "Priority=" + notePriority + ", " +
                 "Category=" + noteCategory + ", " +
                 "Archived=" + booleanToYN(isNoteArchived()) + "\n" +
-                listItems() + "\n";
+                this.listItems() + "\n";
     }
 
     /*

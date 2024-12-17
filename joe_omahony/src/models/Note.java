@@ -1,11 +1,9 @@
 package models;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
+import static utils.CategoryUtility.*;
 import static utils.Utilities.*;
 
 public class Note {
@@ -28,7 +26,9 @@ public Note(String noteTitle, int notePriority, String noteCategory)
 The constructor should enforce the validation rules outlined for each field above.
  */
     public Note(String noteTitle, int notePriority, String noteCategory) {
-
+        this.setNoteTitle(noteTitle);
+        this.setNotePriority(notePriority);
+        this.setNoteCategory(noteCategory);
     }
 
     public String getNoteTitle() {
@@ -36,7 +36,7 @@ The constructor should enforce the validation rules outlined for each field abov
     }
 
     public void setNoteTitle(String noteTitle) {
-        //notetitle: is maximum 20 characters. When creating a new note, if no title is
+        //noteTitle: is maximum 20 characters. When creating a new note, if no title is
         // supplied, you should default the text “No Title”. When updating noteTitle,
                 // you should only update if the value is less than or equal to 20.
         if ((noteTitle == null) || (noteTitle.isBlank())) {
@@ -72,7 +72,12 @@ The constructor should enforce the validation rules outlined for each field abov
         // noteCategory: should contain only one of the following categories: “Home”, “Work”,
     // “Hobby”, “Holiday”, “College”. When creating a new note, if no category is
        // supplied, you should default the empty String, “”.
-
+        if (isValidCategory(noteCategory)) {
+            this.noteCategory = noteCategory;
+        }
+        else {
+            this.noteCategory = "";
+        }
     }
 
     public boolean isNoteArchived() {
@@ -80,7 +85,7 @@ The constructor should enforce the validation rules outlined for each field abov
     }
 
     public void setNoteArchived(boolean noteArchived) {
-        isNoteArchived = noteArchived;
+        this.isNoteArchived = noteArchived;
     }
 
     public ArrayList<Item> getItems() {
@@ -95,16 +100,25 @@ The constructor should enforce the validation rules outlined for each field abov
 
     public int numberOfItems() {
 //This method simply returns the number of items stored in the items ArrayList.
+        return this.items.size();
     }
 
     public boolean checkNoteCompletionStatus(){
         /*
         This method looks at the completion status for each item on a note.
     ==>> If:
-==> ALL items are completed, return true.
+==> ALL items are completed or the note has no items, return true.
 ==> one or more item is TODO, return false.
-==> the note has no items, return true.
          */
+        // You can simplify this with boolean ! and returning instead of using a flag,
+        // but it gets very hard to follow so I've left it as is
+        boolean noteCompletionFlag = true;
+        for (Item individualItem : this.items) {
+            if (individualItem.isItemCompleted() == false) {
+                noteCompletionFlag = false;
+            }
+        }
+        return noteCompletionFlag;
     }
 
     public boolean addItem(Item item){
@@ -116,6 +130,7 @@ Hint: go to the Java API documentation for the ArrayList add method;
 you will notice that it returns a boolean indicating success / failure of
 the add.
          */
+        return this.items.add(item);
     }
 
     public String listItems() {
@@ -124,6 +139,16 @@ the add.
 ==>> the list of items (including index number) if there are items in the note.
 ==>> the string “No items added” if there are no items added yet.
          */
+        String listItemsString = "";
+        if ((this.items == null) || (this.items.isEmpty()))  {
+            listItemsString = "No items added";
+        }
+        else {
+            for (Item individualItem : this.items) {
+                listItemsString += individualItem.toString() + "\n";
+            }
+        }
+        return listItemsString;
     }
 
     public boolean isValidIndex(int index){
@@ -132,10 +157,16 @@ the add.
          in the items ArrayList. If it is a valid index, return true. If invalid,
           return false.
          */
+        return (validRange(index, 0, (this.items.size()) - 1));
     }
 
     public Item findItem(int index){
-        //
+        if (isValidIndex(index)) {
+            return this.items.get(index);
+        }
+        else {
+            return null;
+        }
     }
 
     public Item deleteItem(int index){
@@ -144,20 +175,33 @@ the add.
          and returns the deleted item object. If the index does not exist in the
           items list, then null should be returned.
          */
+        if (isValidIndex(index)) {
+            return this.items.remove(index);
+        }
+        else {
+            return null;
+        }
     }
 
-    public boolean updateItem(int i, String str, boolean bool) {
+    public boolean updateItem(int index, String description, boolean isArchived) {
         /*
         This method should attempt to retrieve the item stored at the index number
         passed as a parameter. ==>> If the item:
-==>> doesn’t exist, return false, indicating the update was not successful.
+==>> doesn't exist, return false, indicating the update was not successful.
 ==>> exists, use the Item mutators to update both the description and the
      completion status with the details passed in the parameter list. Finally,
      return true to indicate a successful update.
 
      When updating noteTitle,
-                // you should only update if the value is less than or equal to 20.
-         */
+                // you should only update if the value is less than or equal to 20.*/
+        if (isValidIndex(index)) {
+            items.get(index).setItemDescription(description);
+            items.get(index).setItemCompleted(isArchived);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
    // COPIED FROM ASSIGNMENT SPEC
@@ -175,7 +219,8 @@ the add.
                 && Objects.equals(items, note.items);
     }
 
-    public String toString(){
+    @Override
+    public String toString() {
         // This method builds a user friendly string representation of the
         // object and returns it e.g.
         /*
@@ -194,8 +239,12 @@ Surf, Priority=4, Category=Hobby, Archived=Y
 No items added
 Book Holiday, Priority=5, Category=Home, Archived=N
 0: Book flights. [Completed]
-1: Book hotel. [Completed]
-         */
+1: Book hotel. [Completed]*/
+        return noteTitle + ", " +
+                "Priority=" + notePriority + ", " +
+                "Category=" + noteCategory + ", " +
+                "Archived=" + booleanToYN(isNoteArchived()) + "\n" +
+                listItems() + "\n";
     }
 
     /*

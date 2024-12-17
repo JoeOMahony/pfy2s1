@@ -28,17 +28,35 @@ It can also be used to print out valid categories to the
 package utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CategoryUtility {
-    public static ArrayList<String> getCategories() {
 
+    public static ArrayList<String> getCategories() {
+        return categories; // new ArrayList<>(categories) -> IntelliJ auto, against spec
     }
 
     public static boolean isValidCategory(String category) {
+        if (category == null || category.isBlank()) {
+            return false;
+        }
 
+        category = category.toLowerCase(); // our categories are lowercase in ArrayList
+
+        for (String individualCat : categories) {
+            if (category.equals(individualCat)) { // We haven't overridden String implementation
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    private static ArrayList<String> categories = new ArrayList<String>() {
-
-    }
+    private static final ArrayList<String> categories = new ArrayList<String>(
+            Arrays.asList("home",
+            "work",
+            "hobby",
+            "holiday",
+            "college")); // Geeks4Geeks
 }
+

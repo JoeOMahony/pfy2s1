@@ -1,7 +1,12 @@
 package models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import static utils.Utilities.*;
 
 public class Note {
 /*
@@ -31,15 +36,32 @@ The constructor should enforce the validation rules outlined for each field abov
     }
 
     public void setNoteTitle(String noteTitle) {
-        this.noteTitle = noteTitle;
+        //notetitle: is maximum 20 characters. When creating a new note, if no title is
+        // supplied, you should default the text “No Title”. When updating noteTitle,
+                // you should only update if the value is less than or equal to 20.
+        if ((noteTitle == null) || (noteTitle.isBlank())) {
+            this.noteTitle = "No Title";
+        }
+        else if (validateStringLength(noteTitle, 20)) {
+            this.noteTitle = noteTitle;
+        }
+        // else {} NO UPDATE if longer than 20 characters, don't truncate
     }
 
     public int getNotePriority() {
+
         return this.notePriority;
     }
 
     public void setNotePriority(int notePriority) {
-        this.notePriority = notePriority;
+        // notePriority: should only contain a value from 1 to 5 inclusive. When creating a
+        // new note, if no priority is supplied, you should default the Priority to 1.
+        if (validRange(notePriority, 1, 5)) {
+            this.notePriority = notePriority;
+        }
+        else {
+            this.notePriority = 1;
+        }
     }
 
     public String getNoteCategory() {
@@ -47,7 +69,10 @@ The constructor should enforce the validation rules outlined for each field abov
     }
 
     public void setNoteCategory(String noteCategory) {
-        this.noteCategory = noteCategory;
+        // noteCategory: should contain only one of the following categories: “Home”, “Work”,
+    // “Hobby”, “Holiday”, “College”. When creating a new note, if no category is
+       // supplied, you should default the empty String, “”.
+
     }
 
     public boolean isNoteArchived() {
@@ -129,6 +154,9 @@ the add.
 ==>> exists, use the Item mutators to update both the description and the
      completion status with the details passed in the parameter list. Finally,
      return true to indicate a successful update.
+
+     When updating noteTitle,
+                // you should only update if the value is less than or equal to 20.
          */
     }
 
@@ -175,16 +203,11 @@ Book Holiday, Priority=5, Category=Home, Archived=N
 
     There are five private fields in the Note class:
 
-    notetitle: is maximum 20 characters. When creating a new note, if no title is
-     supplied, you should default the text “No Title”. When updating noteTitle,
-     you should only update if the value is less than or equal to 20.
 
-    notePriority: should only contain a value from 1 to 5 inclusive. When creating a
-     new note, if no priority is supplied, you should default the Priority to 1.
 
-    noteCategory: should contain only one of the following categories: “Home”, “Work”,
-     “Hobby”, “Holiday”, “College”. When creating a new note, if no category is
-     supplied, you should default the empty String, “”.
+
+
+
 
     isNoteArchived: should be either true or false. When creating a new note, it
     should be defaulted to false.

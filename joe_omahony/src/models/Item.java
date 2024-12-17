@@ -30,7 +30,10 @@ listed above.
     }
 
     public void setItemDescription(String itemDescription) {
-        if (validateStringLength(itemDescription, 50)) {
+        if ((itemDescription == null) || (itemDescription.isBlank())) {
+            this.itemDescription = "No Description";
+        }
+        else if (validateStringLength(itemDescription, 50)) {
             this.itemDescription = itemDescription;
         }
         else {
@@ -46,7 +49,7 @@ listed above.
         this.isItemCompleted = itemCompleted;
     }
 
-    @Override // MODIFIED FROM GIVEN NOTE CATEGORY
+    @Override // MODIFIED FROM GIVEN equals NOTE CATEGORY
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

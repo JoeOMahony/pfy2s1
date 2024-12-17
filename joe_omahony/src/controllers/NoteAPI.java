@@ -6,7 +6,6 @@ import models.Note;
 import java.util.ArrayList;
 
 import static utils.CategoryUtility.isValidCategory;
-import static utils.Utilities.YNtoBoolean;
 import static utils.Utilities.validRange;
 
 public class NoteAPI {
@@ -337,7 +336,6 @@ functionality, except you are dealing with Archived notes, not active ones.
             return "No notes stored";
         }
         category = category.toLowerCase(); // had to change below else if to if because of this
-
         if (!(isValidCategory(category)) || (numberOfNotesByCategory(category) == 0)) {
             return "No notes with category " + category;
         }
@@ -433,6 +431,47 @@ The functionality of this method is the same as the
         Primary School 2:30 (Note: School Run)
         Hoover Upstairs (Note: Hoover House)
  */
+        if (notes == null || notes.isEmpty()) {
+            return "No notes stored";
+        }
+
+        category = category.toLowerCase();
+        if (!(isValidCategory(category)) || (numberOfNotesByCategory(category) == 0)) {
+            return "No notes with category " + category;
+        }
+
+        int completedCtr = 0;
+        String completedItems = "";
+        int todoCtr = 0;
+        String todoItems = "";
+
+        String itemStatusByCategory = "";
+
+        for (Note note : notes) {
+            if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
+                if (note.getNoteCategory().equals(category)) {
+                    for (Item item : note.getItems()) {
+                        String itemDescription = "";
+                        itemDescription += item.getItemDescription() + " (Note: " + note.getNoteTitle() + ")\n";
+                        if (item.isItemCompleted()) {
+                            completedItems += itemDescription;
+                            completedCtr++;
+                        }
+                        else {
+                            todoItems += itemDescription;
+                            todoCtr++;
+                        }
+                    }
+                }
+            }
+        }
+
+        itemStatusByCategory += "Number Completed: " + completedCtr + "\n";
+        itemStatusByCategory += completedItems;
+        itemStatusByCategory += "Number TODO: " + todoCtr + "\n";
+        itemStatusByCategory += todoItems;
+
+        return itemStatusByCategory;
     }
 
 // -------------- END OF LISTING METHODS --------------
@@ -446,9 +485,15 @@ This method first checks that the index, passed as a parameter, is valid.
     ==>> valid, then the note at that index location in the notes ArrayList is returned.
     ==>> not valid, null is returned.
  */
+        if (isValidIndex(index)) {
+            return notes.get(index);
+        }
+        else {
+            return null;
+        }
     }
 
-    public String searchNotesByTitle(String str) {
+    public String searchNotesByTitle(String searchTitle) {
 /*
 ==>> If the notes list is:
     ==>> empty, the String “No notes stored” is returned.
@@ -459,20 +504,61 @@ This method first checks that the index, passed as a parameter, is valid.
             ==>> is still empty, the text “No notes found for: ” is returned.
             ==>> is not empty, the String containing all notes that matched is returned.
  */
+        if (notes == null || notes.isEmpty()) {
+            return "No notes stored";
+        }
+
+        String searchResultsByTitle = "";
+
+        for (Note note : notes) {
+            String noteTitle = note.getNoteTitle();
+            // Moved lowercase change to below
+            if (noteTitle.toLowerCase().contains(searchTitle.toLowerCase())) {
+                searchResultsByTitle += "Note " + notes.indexOf(note) + ": " + noteTitle + "\n";
+            }
+        }
+
+        if (searchResultsByTitle.isEmpty()) {
+            return "No notes found for: " + searchTitle;
+        }
+
+        return searchResultsByTitle;
     }
 
-    public String searchItemByDescription(String str) {
+    public String searchItemByDescription(String searchItemDescription) {
 /*
 ==>> If the notes list is:
     ==>> empty, the String “No notes stored” is returned.
     ==>> not empty, for each note, the description of each item is checked
          against the searchString passed as a parameter. If they match, the index of
          the note, the noteTitle and the item is added to a String. When all notes
-         have been checked, ==>> if the String:
-         ==>> When all notes have been checked, if the String:
+         have been checked,
+         ==>> if the String:
             ==>> is still empty, the text “No items found for: ” is returned.
             ==>> is not empty, the String containing all items that matched is returned.
  */
+        if (notes == null || notes.isEmpty()) {
+            return "No notes stored";
+        }
+
+        String searchResultsByDescription = "";
+
+        for (Note note : notes) {
+            if ((note.getItems()) != null && !(note.getItems().isEmpty())) {
+                for (Item item : note.getItems()) {
+                    if (item.getItemDescription().toLowerCase().contains(searchItemDescription.toLowerCase())) {
+                        searchResultsByDescription += "Note " + notes.indexOf(note) + ": " +
+                                note.getNoteTitle() + "\n" + item.toString() + "\n";
+                    }
+                }
+            }
+        }
+
+        if (searchResultsByDescription.isEmpty()) {
+            return "No items found for: " + searchItemDescription;
+        }
+
+        return searchResultsByDescription;
     }
 
 // -------------- END OF FINDING/SEARCHING METHODS --------------
@@ -493,11 +579,13 @@ is a valid index in the notes ArrayList. If it is a valid index, return true.
     // -------------- TWO PERSISTENCE METHODS  --------------
     public void load() {
 // this method saves the notes ArrayList to an XML file on your hard disk.
+
     }
 
     public void save() {
 // this method loads the XML file previously stored on your hard disk into the
 // notes ArrayList.
+
     }
 
     // notes: This is the ArrayList of Note in the app. It is initialised at

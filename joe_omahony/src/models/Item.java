@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Objects;
 import static utils.Utilities.*;
 
 public class Item {
@@ -45,13 +46,13 @@ listed above.
         this.isItemCompleted = itemCompleted;
     }
 
-    @Override // must override as by default only checks memory position
-    public boolean equals(Object obj) {
-        if (obj instanceof Item) {
-            Item item = (Item) obj; // still object, must cast to access fields
-            return (this.itemDescription.equals(item.getItemDescription()) && this.isItemCompleted == item.isItemCompleted);
-        }
-        return false;
+    @Override // MODIFIED FROM GIVEN NOTE CATEGORY
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return isItemCompleted == item.isItemCompleted &&
+                Objects.equals(itemDescription, item.itemDescription); // Logical equality check
     }
 
 /* Sample output from the toString is below (note how the boolean value

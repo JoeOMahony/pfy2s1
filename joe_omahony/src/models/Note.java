@@ -27,7 +27,7 @@ The constructor should enforce the validation rules outlined for each field abov
     }
 
     public String getNoteTitle() {
-        return noteTitle;
+        return this.noteTitle;
     }
 
     public void setNoteTitle(String noteTitle) {
@@ -35,7 +35,7 @@ The constructor should enforce the validation rules outlined for each field abov
     }
 
     public int getNotePriority() {
-        return notePriority;
+        return this.notePriority;
     }
 
     public void setNotePriority(int notePriority) {
@@ -43,7 +43,7 @@ The constructor should enforce the validation rules outlined for each field abov
     }
 
     public String getNoteCategory() {
-        return noteCategory;
+        return this.noteCategory;
     }
 
     public void setNoteCategory(String noteCategory) {
@@ -59,7 +59,7 @@ The constructor should enforce the validation rules outlined for each field abov
     }
 
     public ArrayList<Item> getItems() {
-        return items;
+        return this.items;
     }
 
     public void setItems(ArrayList<Item> items) {

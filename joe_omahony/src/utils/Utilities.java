@@ -21,7 +21,6 @@ public class Utilities {
      * This method takes in a decimal point number and truncates it to two decimal places.  Note
      * that the method does NOT round when truncating; the numbers after the two decimal places are
      * just removed.
-     *
      * The method does the truncating in this manner:
      *  - multiply the number by 100 e.g. 16.543235523 * 100 = 1654.3235523
      *  - cast the multiplied number as an in e.g. 1654.3235523 = 1654
@@ -98,6 +97,10 @@ public class Utilities {
     public static boolean validRange(int numberToCheck, int min, int max) {
         return ((numberToCheck >= min) && (numberToCheck <= max));
     }
-    
+
+    public static boolean tryAgain() {
+        char ynTryAgainChar = ScannerInput.readNextChar("Would you like to try again? [Y/N] => ");
+        return YNtoBoolean(ynTryAgainChar);
+    }
 
 }

@@ -17,14 +17,14 @@ The responsibility for this class is to manage a single Note in the System.
    format of the generated toString, etc.
  */
 
-/*
-Constructor
+    /*
+    Constructor
 
-There is one constructor that should have the same method signature as the
-diagram above e.g.:
-public Note(String noteTitle, int notePriority, String noteCategory)
-The constructor should enforce the validation rules outlined for each field above.
- */
+    There is one constructor that should have the same method signature as the
+    diagram above e.g.:
+    public Note(String noteTitle, int notePriority, String noteCategory)
+    The constructor should enforce the validation rules outlined for each field above.
+     */
     public Note(String noteTitle, int notePriority, String noteCategory) {
         this.setNoteTitle(noteTitle);
         this.setNotePriority(notePriority);
@@ -38,7 +38,7 @@ The constructor should enforce the validation rules outlined for each field abov
     public void setNoteTitle(String passedNoteTitle) {
         //noteTitle: is maximum 20 characters. When creating a new note, if no title is
         // supplied, you should default the text “No Title”. When updating noteTitle,
-                // you should only update if the value is less than or equal to 20.
+        // you should only update if the value is less than or equal to 20.
         if (validateStringLength(passedNoteTitle, 20)) {
             this.noteTitle = passedNoteTitle;
         }
@@ -69,10 +69,10 @@ The constructor should enforce the validation rules outlined for each field abov
 
     public void setNoteCategory(String noteCategory) {
         // noteCategory: should contain only one of the following categories: “Home”, “Work”,
-    // “Hobby”, “Holiday”, “College”. When creating a new note, if no category is
-       // supplied, you should default the empty String, “”.
+        // “Hobby”, “Holiday”, “College”. When creating a new note, if no category is
+        // supplied, you should default the empty String, “”.
         if ((noteCategory == null) || (noteCategory.isBlank())) {
-                this.noteCategory = "";
+            this.noteCategory = "";
         }
         else if (isValidCategory(noteCategory.trim())) {
             this.noteCategory = noteCategory;
@@ -218,7 +218,7 @@ the add.
         }
     }
 
-   // COPIED FROM ASSIGNMENT SPEC
+    // COPIED FROM ASSIGNMENT SPEC
     // This method checks equality between notes. BELOW IS NOTE VERSION OF equals()
     @Override
     public boolean equals(Object o) {

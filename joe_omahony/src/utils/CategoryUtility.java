@@ -50,6 +50,21 @@ public class CategoryUtility {
         return false;
     }
 
+    public static String categoryFormatter(String category) {
+        if ((category == null) || (category.isBlank())) {
+            return category;
+        }
+        category = category.toLowerCase().trim();
+        return switch (category) {
+            case "home" -> "Home";
+            case "work" -> "Work";
+            case "hobby" -> "Hobby";
+            case "holiday" -> "Holiday";
+            case "college" -> "College";
+            default -> category;
+        };
+    }
+
     private static final ArrayList<String> categories = new ArrayList<String>(
             Arrays.asList("Home",
             "Work",

@@ -56,10 +56,11 @@ This method should attempt to retrieve the note stored at the index number passe
         /* This method deletes an note at the index parameter (if that index exists)
            and returns the deleted note object. If the index does not exist in the
            notes list, then null should be returned. */
-        if (isValidIndex(indexToDelete)) {
-            return notes.remove(indexToDelete);
+        if (!(isValidIndex(indexToDelete))) {
+            return null;
         }
-        return null;
+        return notes.remove(indexToDelete);
+
     }
 
     public boolean archiveNote(int indexToArchive) {
@@ -409,16 +410,16 @@ The functionality of this method is the same as the
         String todoItems = "";
 
         for (Note note : notes) {
-                    if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
-                        // getItems() doesn't check in Note class
-                        for (Item item : note.getItems()) {
-                            if (!(item.isItemCompleted())) {
-                                todoItems += note.getNoteTitle() + " " + item.toString() + "\n";
-                            }
-                        }
+            if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
+                // getItems() doesn't check in Note class
+                for (Item item : note.getItems()) {
+                    if (!(item.isItemCompleted())) {
+                        todoItems += note.getNoteTitle() + " " + item.toString() + "\n";
                     }
-                    // else {} empty here
                 }
+            }
+            // else {} empty here
+        }
         return todoItems;
     }
 
@@ -444,8 +445,7 @@ The functionality of this method is the same as the
         if (notes == null || notes.isEmpty()) {
             return "No notes stored";
         }
-
-        if (!(isValidCategory(category)) || (numberOfNotesByCategory(category) == 0)) {
+        else if (!(isValidCategory(category)) || (numberOfNotesByCategory(category) == 0)) {
             return "No notes with category " + category;
         }
 
@@ -572,7 +572,7 @@ This method first checks that the index, passed as a parameter, is valid.
 
 // -------------- END OF FINDING/SEARCHING METHODS --------------
 
-// -------------- SINGLE HELPER METHOD IMPORTANT --------------
+    // -------------- SINGLE HELPER METHOD IMPORTANT --------------
     public boolean isValidIndex(int index) {
 /*
 This helper method will be used by several methods below,

@@ -4,10 +4,13 @@ import controllers.NoteAPI;
 import models.Note;
 import models.Item;
 
+import static utils.CategoryUtility.categoryFormatter;
 import static utils.ScannerInput.*;
 import static utils.Utilities.YNtoBoolean;
+import static utils.Utilities.tryAgain;
 
 import utils.CategoryUtility;
+import utils.ScannerInput;
 import utils.Utilities;
 
 
@@ -92,7 +95,7 @@ public class Driver {
                 "|  0) Exit                                            |\n" +
                 "-------------------------------------------------------");
 
-        return readNextInt("Please enter an option => ");
+        return readNextInt("Enter an option => ");
     }
 
     private void runMenu() {
@@ -152,14 +155,23 @@ public class Driver {
     private void addNote() {
         String title = readNextLine("Enter note title => ");
         int priority = readNextInt("Enter note priority [1-5] => ");
-        String category = readNextLine("Enter note category [Home/Work/Hobby/Holiday/College] => ");
-        Note newNote = new Note(title, priority, category);
-        if (noteAPI.add(newNote)) {
-            System.out.println("Note added successfully.");
+        String category = categoryFormatter(readNextLine("Enter note category [Home/Work/Hobby/Holiday/College] => "));
+        if (!(CategoryUtility.isValidCategory(category))) {
+            System.out.println("Invalid category! [" + category + "]");
+            if (tryAgain()) {
+                addNote();
+            }
         }
         else {
-            System.out.println("Unable to add note with attributes:\n" + "[Title: " + title + ", Priority: "
-                    + priority + ", Category: " + category + "].");
+            Note newNote = new Note(title, priority, category);
+            if (noteAPI.add(newNote)) {
+                System.out.println("Note added successfully.");
+            } else {
+                System.out.println("Unable to add note with attributes:\n" + "[Title: " + title + ", Priority: " + priority + ", Category: " + category + "].");
+                if (tryAgain()) {
+                    addNote();
+                }
+            }
         }
     }
 
@@ -188,7 +200,7 @@ public class Driver {
                     |    2) View ACTIVE Notes     | 
                     |    3) View ARCHIVED Notes   |
                     -------------------------------
-                    Enter option => """);
+                    Enter an option => """);
 
             switch (option) {
                 case 1 -> printAllNotes();
@@ -222,14 +234,20 @@ public class Driver {
 
             if ((noteAPI.findNote(index) == null) || !(noteAPI.isValidIndex(index))) {
                 System.out.println("Invalid note index selected! [" + index + "]");
+                if (tryAgain()) {
+                    updateNote();
+                }
             }
             else {
                 String updatedTitle = readNextLine("Enter new note title => ");
                 int updatedPriority = readNextInt("Enter new note priority [1-5] => ");
-                String updatedCategory = readNextLine("Enter new note category [Home/Work/Hobby/Holiday/College] => ");
+                String updatedCategory = categoryFormatter(readNextLine("Enter new note category [Home/Work/Hobby/Holiday/College] => "));
 
                 if (!(CategoryUtility.isValidCategory(updatedCategory))) {
                     System.out.println("Invalid category selected! [" + updatedCategory + "]");
+                    if (tryAgain()) {
+                        updateNote();
+                    }
                 }
                 else {
                     if (noteAPI.updateNote(index, updatedTitle, updatedPriority, updatedCategory)) {
@@ -237,6 +255,9 @@ public class Driver {
                     } else {
                         System.out.println("Unable to update note at index " + index + " with options:\n" + "[Title: "
                                 + updatedTitle + " / Priority: " + updatedPriority + " / Category: " + updatedCategory + "]");
+                        if (tryAgain()) {
+                            updateNote();
+                        }
                     }
                 }
             }
@@ -263,6 +284,9 @@ public class Driver {
 
             if ((noteAPI.findNote(index) == null) || !(noteAPI.isValidIndex(index))) {
                 System.out.println("Unable to delete note! Invalid note index [" + index + "]");
+                if (tryAgain()) {
+                    deleteNote();
+                }
             }
             else {
                 Note deletedNote = noteAPI.deleteNote(index);
@@ -272,6 +296,9 @@ public class Driver {
                 }
                 else {
                     System.out.println("Unable to delete note at index [" + index + "].");
+                    if (tryAgain()) {
+                        deleteNote();
+                    }
                 }
             }
         }
@@ -300,7 +327,9 @@ public class Driver {
             else {
                 if (!(noteAPI.isValidIndex(index))) {
                     System.out.println("Unable to archive note! Invalid note index [" + index + "].");
-
+                    if (tryAgain()) {
+                        archiveNote();
+                    }
                 }
                 else if (!(noteAPI.findNote(index).checkNoteCompletionStatus())) {
                     System.out.println("Unable to archive note! Incomplete note items.");
@@ -310,6 +339,9 @@ public class Driver {
                 }
                 else {
                     System.out.println("Unable to archive note!");
+                    if (tryAgain()) {
+                        archiveNote();
+                    }
                 }
             }
         }
@@ -337,6 +369,9 @@ public class Driver {
             Note note = noteAPI.findNote(index);
             if ((note == null) || !(noteAPI.isValidIndex(index))) {
                 System.out.println("Unable to access note! Invalid note index [" + index +"].");
+                if (tryAgain()) {
+                    addItemToNote();
+                }
             }
             else if (note.isNoteArchived()) {
                  System.out.println("This note is already archived!");
@@ -349,6 +384,9 @@ public class Driver {
                 }
                 else {
                     System.out.println("Unable to add item with description [" + itemDesc + "]!");
+                    if (tryAgain()) {
+                        addItemToNote();
+                    }
                 }
             }
         }
@@ -380,6 +418,9 @@ public class Driver {
             Note note = noteAPI.findNote(noteIndex);
             if ((note == null) || !(noteAPI.isValidIndex(noteIndex))) {
                 System.out.println("Unable to access note! Invalid note index [" + noteIndex + "].");
+                if (tryAgain()) {
+                    updateItemDescInNote();
+                }
             }
             else if (note.isNoteArchived()) {
                 System.out.println("Unable to update item description! This note is archived [" +
@@ -394,6 +435,9 @@ public class Driver {
                     Item itemToUpdate = note.findItem(itemIndex);
                     if (itemToUpdate == null) {
                         System.out.println("Invalid item index! [" + itemIndex + "]");
+                        if (tryAgain()) {
+                            updateItemDescInNote();
+                        }
                     }
                     else {
                         String newDesc = readNextLine("Enter new item description => ");
@@ -405,6 +449,9 @@ public class Driver {
                             System.out.println("Unable to update item having completed status: " +
                                     Utilities.booleanToYN(oldStatus) +", and index: " + itemIndex + ", " +
                                     "with new description [" + newDesc + "].");
+                            if (tryAgain()) {
+                                updateItemDescInNote();
+                            }
                     }
                 }
             }
@@ -433,6 +480,9 @@ public class Driver {
             Note note = noteAPI.findNote(noteIndex);
             if ((note == null) || !(noteAPI.isValidIndex(noteIndex))) {
                 System.out.println("Unable to access note! Invalid note index [" + noteIndex + "].");
+                if (tryAgain()) {
+                    deleteItemFromNote();
+                }
             } else if (note.isNoteArchived()) {
                 System.out.println("Unable to delete item from note! This note is archived [" + Utilities.booleanToYN(note.isNoteArchived()) + "].");
             } else if (note.numberOfItems() == 0) {
@@ -445,6 +495,9 @@ public class Driver {
                     System.out.println("Item deleted successfully: " + deletedItem);
                 } else {
                     System.out.println("Unable to delete item! Invalid item index [" + itemIndex + "].");
+                    if (tryAgain()) {
+                        deleteItemFromNote();
+                    }
                 }
                 // Implementation for deleting an item from a note
             }
@@ -473,11 +526,17 @@ public class Driver {
 
             if (!(noteAPI.isValidIndex(noteIndex))) {
                 System.out.println("Unable to access note! Invalid note index [" + noteIndex + "].");
+                if (tryAgain()) {
+                    markCompletionOfItem();
+                }
             }
             else {
                 Note note = noteAPI.findNote(noteIndex);
                 if (note == null) {
                     System.out.println("Nothing at that index! [" + noteIndex + "]");
+                    if (tryAgain()) {
+                        markCompletionOfItem();
+                    }
                 }
                 else if (note.isNoteArchived()) {
                     System.out.println("Unable to mark items completed in note! This note is archived.");
@@ -491,6 +550,9 @@ public class Driver {
                     Item item = note.findItem(itemIndex);
                     if (item == null) {
                         System.out.println("Invalid item index! [" + itemIndex + "]");
+                        if (tryAgain()) {
+                            markCompletionOfItem();
+                        }
                     }
                     else {
                         char itemCompletedChar = readNextChar("Mark item as completed? [Y/N] => ");
@@ -570,9 +632,12 @@ public class Driver {
             System.out.println("No notes saved!");
         }
         else {
-            String category = readNextLine("Enter a category [Home, Work, Hobby, Holiday, College] => ");
+            String category = categoryFormatter(readNextLine("Enter a category [Home, Work, Hobby, Holiday, College] => "));
             if ((category == null) || !(CategoryUtility.isValidCategory(category))) {
                 System.out.println("Invalid category selected! [" + category + "]");
+                if (tryAgain()) {
+                    printNotesBySelectedCategory();
+                }
             }
             else {
                 System.out.println(noteAPI.listNotesBySelectedCategory(category));
@@ -599,6 +664,9 @@ public class Driver {
             }
             else {
                 System.out.println("Invalid priority selected! [" + priority + "]");
+                if (tryAgain()) {
+                    printNotesByPriority();
+                }
             }
         }
     }
@@ -670,9 +738,12 @@ public class Driver {
             System.out.println("No notes saved!");
         }
         else {
-            String category = readNextLine("Enter a category [Home, Work, Hobby, Holiday, College] => ");
-            if ((category == null) || !(CategoryUtility.isValidCategory(category))) {
+            String category = categoryFormatter(readNextLine("Enter a category [Home, Work, Hobby, Holiday, College] => "));
+            if (!(CategoryUtility.isValidCategory(category))) {
                 System.out.println("Invalid category selected! [" + category + "]");
+                if (tryAgain()) {
+                    printItemCompletionStatusByCategory();
+                }
             }
             else {
                 System.out.println(noteAPI.listItemStatusByCategory(category));
@@ -715,6 +786,9 @@ public class Driver {
             System.out.println("Notes saved successfully.");
         } catch (Exception e) {
             System.out.println("Error saving notes! [" + e.getMessage() + "]");
+            if (tryAgain()) {
+                save();
+            }
         }
     }
 
@@ -730,6 +804,9 @@ public class Driver {
             System.out.println("Notes loaded successfully.");
         } catch (Exception e) {
             System.out.println("Error loading notes! [" + e.getMessage() + "]");
+            if (tryAgain()) {
+                load();
+            }
         }
     }
 

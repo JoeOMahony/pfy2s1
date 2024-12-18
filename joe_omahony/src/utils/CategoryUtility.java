@@ -41,10 +41,8 @@ public class CategoryUtility {
             return false;
         }
 
-        category = category.toLowerCase(); // our categories are lowercase in ArrayList
-
-        for (String individualCat : categories) {
-            if (category.equals(individualCat)) { // We haven't overridden String implementation
+        for (String cat : categories) {
+            if (category.equals(cat)) { // We haven't overridden String implementation
                 return true;
             }
         }
@@ -53,10 +51,10 @@ public class CategoryUtility {
     }
 
     private static final ArrayList<String> categories = new ArrayList<String>(
-            Arrays.asList("home",
-            "work",
-            "hobby",
-            "holiday",
-            "college")); // Geeks4Geeks
+            Arrays.asList("Home",
+            "Work",
+            "Hobby",
+            "Holiday",
+            "College")); // Geeks4Geeks
 }
 

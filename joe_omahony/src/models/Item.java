@@ -29,15 +29,18 @@ listed above.
         return this.itemDescription;
     }
 
-    public void setItemDescription(String itemDescription) {
-        if ((itemDescription == null) || (itemDescription.isBlank())) {
-            this.itemDescription = "No Description";
+    public void setItemDescription(String passedItemDescription) {
+        if ((passedItemDescription == null) || (passedItemDescription.isBlank())) {
+            // Do nothing
         }
-        else if (validateStringLength(itemDescription, 50)) {
-            this.itemDescription = itemDescription;
+        else if (validateStringLength(passedItemDescription, 50)) {
+            this.itemDescription = passedItemDescription;
+        }
+        else if (this.itemDescription.equals("No Description")) {
+            this.itemDescription = truncateString(passedItemDescription, 50);
         }
         else {
-            this.itemDescription = truncateString(itemDescription, 50);
+            // Do nothing
         }
     }
 
@@ -70,9 +73,9 @@ Book hotel. [COMPLETED]
     @Override
     public String toString() {
         String itemFormat = "";
-        itemFormat += this.getItemDescription() + "\t";
+        itemFormat += this.getItemDescription() + ".\t";
         if (this.isItemCompleted()) {
-            itemFormat += "[COMPLETED]";
+            itemFormat += "[Completed]";
         }
         else {
             itemFormat += "[TODO]";

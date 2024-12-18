@@ -35,32 +35,31 @@ The constructor should enforce the validation rules outlined for each field abov
         return this.noteTitle;
     }
 
-    public void setNoteTitle(String noteTitle) {
+    public void setNoteTitle(String passedNoteTitle) {
         //noteTitle: is maximum 20 characters. When creating a new note, if no title is
         // supplied, you should default the text “No Title”. When updating noteTitle,
                 // you should only update if the value is less than or equal to 20.
-        if ((noteTitle == null) || (noteTitle.isBlank())) {
-            this.noteTitle = "No Title";
+        if (validateStringLength(passedNoteTitle, 20)) {
+            this.noteTitle = passedNoteTitle;
         }
-        else if (validateStringLength(noteTitle, 20)) {
-            this.noteTitle = noteTitle;
+        else if (this.noteTitle.equals("No Title")) {
+            this.noteTitle = truncateString(passedNoteTitle, 20);
         }
         // else {} NO UPDATE if longer than 20 characters, don't truncate
     }
 
     public int getNotePriority() {
-
         return this.notePriority;
     }
 
-    public void setNotePriority(int notePriority) {
+    public void setNotePriority(int passedNotePriority) {
         // notePriority: should only contain a value from 1 to 5 inclusive. When creating a
         // new note, if no priority is supplied, you should default the Priority to 1.
-        if (validRange(notePriority, 1, 5)) {
-            this.notePriority = notePriority;
+        if ((passedNotePriority < 1) || (passedNotePriority > 5)) {
+            // DO NOTHING
         }
         else {
-            this.notePriority = 1;
+            this.notePriority = passedNotePriority;
         }
     }
 
@@ -72,11 +71,26 @@ The constructor should enforce the validation rules outlined for each field abov
         // noteCategory: should contain only one of the following categories: “Home”, “Work”,
     // “Hobby”, “Holiday”, “College”. When creating a new note, if no category is
        // supplied, you should default the empty String, “”.
-        if (isValidCategory(noteCategory)) {
+        if ((noteCategory == null) || (noteCategory.isBlank())) {
+                this.noteCategory = "";
+        }
+        else if (isValidCategory(noteCategory.trim())) {
             this.noteCategory = noteCategory;
         }
-        else {
-            this.noteCategory = "";
+        else if (noteCategory.trim() == "home") {
+            this.noteCategory = "Home";
+        }
+        else if (noteCategory.trim() == "work") {
+            this.noteCategory = "Work";
+        }
+        else if (noteCategory.trim() == "hobby") {
+            this.noteCategory = "Hobby";
+        }
+        else if (noteCategory.trim() == "holiday") {
+            this.noteCategory = "Holiday";
+        }
+        else if (noteCategory.trim() == "college") {
+            this.noteCategory = "College";
         }
     }
 
@@ -144,8 +158,8 @@ the add.
             listItemsString = "No items added";
         }
         else {
-            for (Item individualItem : this.items) {
-                listItemsString += individualItem.toString() + "\n";
+            for (int i = 0; i < this.items.size(); i++) {
+                listItemsString += i + ": " + this.items.get(i).toString() + "\n";
             }
         }
         return listItemsString;
@@ -240,11 +254,8 @@ No items added
 Book Holiday, Priority=5, Category=Home, Archived=N
 0: Book flights. [Completed]
 1: Book hotel. [Completed]*/
-        return noteTitle + ", " +
-                "Priority=" + notePriority + ", " +
-                "Category=" + noteCategory + ", " +
-                "Archived=" + booleanToYN(isNoteArchived()) + "\n" +
-                this.listItems() + "\n";
+        return noteTitle + ", " + "Priority=" + notePriority + ", " + "Category=" + noteCategory + ", " + "Archived="
+                + booleanToYN(isNoteArchived()) +  "\n" + this.listItems();
     }
 
     /*

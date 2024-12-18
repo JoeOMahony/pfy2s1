@@ -1,5 +1,16 @@
 package controllers;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.lang.ClassNotFoundException;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
 import models.Item;
 import models.Note;
 
@@ -334,8 +345,7 @@ functionality, except you are dealing with Archived notes, not active ones.
  */
         if ((notes == null) || (notes.isEmpty())) {
             return "No notes stored";
-        }
-        category = category.toLowerCase(); // had to change below else if to if because of this
+        }// had to change below else if to if because of this
         if (!(isValidCategory(category)) || (numberOfNotesByCategory(category) == 0)) {
             return "No notes with category " + category;
         }
@@ -435,7 +445,6 @@ The functionality of this method is the same as the
             return "No notes stored";
         }
 
-        category = category.toLowerCase();
         if (!(isValidCategory(category)) || (numberOfNotesByCategory(category) == 0)) {
             return "No notes with category " + category;
         }
@@ -513,8 +522,8 @@ This method first checks that the index, passed as a parameter, is valid.
         for (Note note : notes) {
             String noteTitle = note.getNoteTitle();
             // Moved lowercase change to below
-            if (noteTitle.toLowerCase().contains(searchTitle.toLowerCase())) {
-                searchResultsByTitle += "Note " + notes.indexOf(note) + ": " + noteTitle + "\n";
+            if (noteTitle.contains(searchTitle)) {
+                searchResultsByTitle += "Note " + notes.indexOf(note) + " : " + note.toString() + "\n";
             }
         }
 
@@ -544,10 +553,10 @@ This method first checks that the index, passed as a parameter, is valid.
         String searchResultsByDescription = "";
 
         for (Note note : notes) {
-            if ((note.getItems()) != null && !(note.getItems().isEmpty())) {
+            if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
                 for (Item item : note.getItems()) {
-                    if (item.getItemDescription().toLowerCase().contains(searchItemDescription.toLowerCase())) {
-                        searchResultsByDescription += "Note " + notes.indexOf(note) + ": " +
+                    if (item.getItemDescription().contains(searchItemDescription)) {
+                        searchResultsByDescription += notes.indexOf(note) + " : " +
                                 note.getNoteTitle() + "\n" + item.toString() + "\n";
                     }
                 }
@@ -577,15 +586,54 @@ is a valid index in the notes ArrayList. If it is a valid index, return true.
     }
 
     // -------------- TWO PERSISTENCE METHODS  --------------
-    public void load() {
+    /**
+     * The load method uses the XStream component to read all the product objects from the products.xml
+     * file stored on the hard disk.  The read products are loaded into the products ArrayList
+     *
+     * @throws Exception  An exception is thrown if an error occurred during the load e.g. a missing file.
+     */
+    public void load() throws IOException, ClassNotFoundException {
 // this method saves the notes ArrayList to an XML file on your hard disk.
+        XStream xstream = new XStream(new DomDriver());
+        // ------------------ PREVENT SECURITY WARNINGS-----------------------------
+        // The Note class is what we are reading in.
+        // Modify to include others if needed by modifying the next line,
+        // add additional classes inside the braces, comma separated
+        Class<?>[] classes = new Class[]{Note.class, Item.class, NoteAPI.class};
 
+        XStream.setupDefaultSecurity(xstream);
+        xstream.allowTypes(classes);
+        // -------------------------------------------------------------------------
+
+        ObjectInputStream is = xstream.createObjectInputStream(new FileReader("notes.xml"));
+        notes = (ArrayList<Note>) is.readObject();
+        is.close();
     }
-
-    public void save() {
-// this method loads the XML file previously stored on your hard disk into the
+    /**
+     * The save method uses the XStream component to write all the product objects in the products ArrayList
+     * to the products.xml file stored on the hard disk.
+     *
+     * @throws Exception  An exception is thrown if an error occurred during the save e.g. drive is full.
+     */
+    public void save() throws Exception {
+        // this method loads the XML file previously stored on your hard disk into the
 // notes ArrayList.
+        XStream xstream = new XStream(new DomDriver());
 
+        // ------------------ PREVENT SECURITY WARNINGS-----------------------------
+        // The Note class is what we are reading in.
+        // Modify to include others if needed by modifying the next line,
+        // add additional classes inside the braces, comma separated
+
+        Class<?>[] classes = new Class[]{Note.class, Item.class, NoteAPI.class};
+
+        XStream.setupDefaultSecurity(xstream);
+        xstream.allowTypes(classes);
+        // -------------------------------------------------------------------------
+
+        ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("notes.xml"));
+        out.writeObject(notes);
+        out.close();
     }
 
     // notes: This is the ArrayList of Note in the app. It is initialised at

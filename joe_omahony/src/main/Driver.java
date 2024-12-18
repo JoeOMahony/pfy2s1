@@ -3,8 +3,13 @@ package main;
 import controllers.NoteAPI;
 import models.Note;
 import models.Item;
-import java.util.Scanner;
-import java.util.ArrayList;
+
+import static utils.ScannerInput.*;
+import static utils.Utilities.YNtoBoolean;
+
+import utils.CategoryUtility;
+import utils.Utilities;
+
 
 public class Driver {
     /*
@@ -51,9 +56,86 @@ public class Driver {
     user choice.
     The runMenu method contains the switch statement that processes the user choice.
 */
+        System.out.println(
+                "-------------------------------------------------------\n" +
+                "|                    NOTE KEEPER APP                  |\n" +
+                "|-----------------------------------------------------|\n" +
+                "| NOTE MENU                                           |\n" +
+                "|  1) Add a note                                      |\n" +
+                "|  2) List all notes (all, active, archived)          |\n" +
+                "|  3) Update a note                                   |\n" +
+                "|  4) Delete a note                                   |\n" +
+                "|  5) Archive a note                                  |\n" +
+                "|-----------------------------------------------------|\n" +
+                "| ITEM MENU                                           |\n" +
+                "|  6) Add an item to a note                           |\n" +
+                "|  7) Update item description on a note               |\n" +
+                "|  8) Delete an item from a note                      |\n" +
+                "|  9) Mark item as complete/todo                      |\n" +
+                "|-----------------------------------------------------|\n" +
+                "| REPORT MENU FOR NOTES                               |\n" +
+                "| 10) All notes and their items (active & archived)   |\n" +
+                "| 11) Archive notes whose items are all complete      |\n" +
+                "| 12) All notes within a selected Category            |\n" +
+                "| 13) All notes within a selected Priority            |\n" +
+                "| 14) Search for all notes (by note title)            |\n" +
+                "------------------------------------------------------|\n" +
+                "| REPORT MENU FOR ITEMS                               |\n" +
+                "| 15) All items that are todo (with note title)       |\n" +
+                "| 16) Overall number of items todo/complete           |\n" +
+                "| 17) Todo/complete items by specific Category        |\n" +
+                "| 18) Search for all items (by item description )     |\n" +
+                "------------------------------------------------------|\n" +
+                "| SETTINGS MENU                                       |\n" +
+                "| 20) Save                                            |\n" +
+                "| 21) Load                                            |\n" +
+                "|  0) Exit                                            |\n" +
+                "-------------------------------------------------------");
+
+        return readNextInt("Please enter an option => ");
     }
 
     private void runMenu() {
+        int option = mainMenu();
+        while (option != 0) {
+            switch (option){
+                case 1 -> addNote();
+                case 2 -> viewNotes();
+                case 3 -> updateNote();
+                case 4 -> deleteNote();
+                case 5 -> archiveNote();
+
+                case 6 -> addItemToNote();
+                case 7 -> updateItemDescInNote();
+                case 8 -> deleteItemFromNote();
+                case 9 -> markCompletionOfItem();
+
+                case 10 -> printActiveAndArchivedReport();
+                case 11 -> archiveNotesWithAllItemsComplete();
+                case 12 -> printNotesBySelectedCategory();
+                case 13 -> printNotesByPriority();
+                case 14 -> searchNotesByTitle();
+
+                case 15 -> printAllTodoItems();
+                case 16 -> printOverallItemsTodoComplete();
+                case 17 -> printItemCompletionStatusByCategory();
+                case 18 -> searchItemsByDescription();
+
+                case 20 -> save();
+                case 21 -> load();
+
+                default -> System.out.println("Invalid option selected! [" + option + "]");
+            }
+            //pause the program so that the user can read what we just printed to the terminal window
+            readNextLine("\nPress any key to continue...");  //this second read is required - bug in Scanner
+            // class; a String read is ignored straight after reading an int.
+
+            //display the main menu again
+            option = mainMenu();
+        }
+
+        //the user chose option 0, so exit the program
+        exitApplication();
     }
 
 // ---------- SWITCH OPTIONS -------------
@@ -68,7 +150,17 @@ public class Driver {
             successful, alert the user to this via a message printed to the console.
     */
     private void addNote() {
-        // Implementation for adding a note
+        String title = readNextLine("Enter note title => ");
+        int priority = readNextInt("Enter note priority [1-5] => ");
+        String category = readNextLine("Enter note category [Home/Work/Hobby/Holiday/College] => ");
+        Note newNote = new Note(title, priority, category);
+        if (noteAPI.add(newNote)) {
+            System.out.println("Note added successfully.");
+        }
+        else {
+            System.out.println("Unable to add note with attributes:\n" + "[Title: " + title + ", Priority: "
+                    + priority + ", Category: " + category + "].");
+        }
     }
 
     /*
@@ -86,6 +178,25 @@ public class Driver {
     If there are no notes stored, inform the user via a console message.
     */
     private void viewNotes() {
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            int option = readNextInt("""
+                    -------------------------------
+                    |    1) View ALL Notes        |
+                    |    2) View ACTIVE Notes     | 
+                    |    3) View ARCHIVED Notes   |
+                    -------------------------------
+                    Enter option => """);
+
+            switch (option) {
+                case 1 -> printAllNotes();
+                case 2 -> printActiveNotes();
+                case 3 -> printArchivedNotes();
+                default -> System.out.println("Invalid option selected! [" + option + "]");
+            }
+        }
     }
 
     /*
@@ -102,6 +213,34 @@ public class Driver {
     */
     private void updateNote() {
         // Implementation for updating a note
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            System.out.println(noteAPI.listAllNotes());
+            int index = readNextInt("Enter index of note to update => ");
+
+            if ((noteAPI.findNote(index) == null) || !(noteAPI.isValidIndex(index))) {
+                System.out.println("Invalid note index selected! [" + index + "]");
+            }
+            else {
+                String updatedTitle = readNextLine("Enter new note title => ");
+                int updatedPriority = readNextInt("Enter new note priority [1-5] => ");
+                String updatedCategory = readNextLine("Enter new note category [Home/Work/Hobby/Holiday/College] => ");
+
+                if (!(CategoryUtility.isValidCategory(updatedCategory))) {
+                    System.out.println("Invalid category selected! [" + updatedCategory + "]");
+                }
+                else {
+                    if (noteAPI.updateNote(index, updatedTitle, updatedPriority, updatedCategory)) {
+                        System.out.println("Note updated successfully.");
+                    } else {
+                        System.out.println("Unable to update note at index " + index + " with options:\n" + "[Title: "
+                                + updatedTitle + " / Priority: " + updatedPriority + " / Category: " + updatedCategory + "]");
+                    }
+                }
+            }
+        }
     }
 
     /*
@@ -115,6 +254,27 @@ public class Driver {
     */
     private void deleteNote() {
         // Implementation for deleting a note
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            System.out.println(noteAPI.listAllNotes());
+            int index = readNextInt("Enter index of note to delete => ");
+
+            if ((noteAPI.findNote(index) == null) || !(noteAPI.isValidIndex(index))) {
+                System.out.println("Unable to delete note! Invalid note index [" + index + "]");
+            }
+            else {
+                Note deletedNote = noteAPI.deleteNote(index);
+                if (deletedNote != null) {
+                    System.out.println("Note deleted successfully");
+                    System.out.println(deletedNote);
+                }
+                else {
+                    System.out.println("Unable to delete note at index [" + index + "].");
+                }
+            }
+        }
     }
 
     /*
@@ -127,6 +287,32 @@ public class Driver {
     */
     private void archiveNote() {
         // Implementation for archiving a note
+        if (noteAPI.numberOfActiveNotes() == 0) {
+            System.out.println("No active notes!");
+        }
+        else {
+            System.out.println(noteAPI.listActiveNotes());
+            int index = readNextInt("Enter active note index to archive => ");
+
+            if (noteAPI.archiveNote(index)) {
+                System.out.println("Note archived successfully.");
+            }
+            else {
+                if (!(noteAPI.isValidIndex(index))) {
+                    System.out.println("Unable to archive note! Invalid note index [" + index + "].");
+
+                }
+                else if (!(noteAPI.findNote(index).checkNoteCompletionStatus())) {
+                    System.out.println("Unable to archive note! Incomplete note items.");
+                }
+                else if (noteAPI.findNote(index).isNoteArchived()) {
+                    System.out.println("This note is already archived!");
+                }
+                else {
+                    System.out.println("Unable to archive note!");
+                }
+            }
+        }
     }
 
     /*
@@ -142,6 +328,30 @@ public class Driver {
     Inform the user whether the add was successful or not.
     */
     private void addItemToNote() {
+        if (noteAPI.numberOfActiveNotes() == 0) {
+            System.out.println("No active notes!");
+        }
+        else {
+            System.out.println(noteAPI.listActiveNotes());
+            int index = readNextInt("Enter active note index to add item to => ");
+            Note note = noteAPI.findNote(index);
+            if ((note == null) || !(noteAPI.isValidIndex(index))) {
+                System.out.println("Unable to access note! Invalid note index [" + index +"].");
+            }
+            else if (note.isNoteArchived()) {
+                 System.out.println("This note is already archived!");
+            }
+            else {
+                String itemDesc = readNextLine("Enter item description => ");
+                Item newItem = new Item(itemDesc);
+                if (note.addItem(newItem)) {
+                    System.out.println("Item added successfully.");
+                }
+                else {
+                    System.out.println("Unable to add item with description [" + itemDesc + "]!");
+                }
+            }
+        }
         // Implementation for adding an item to a note
     }
 
@@ -161,6 +371,44 @@ public class Driver {
     */
     private void updateItemDescInNote() {
         // Implementation for updating an item's description in a note
+        if (noteAPI.numberOfActiveNotes() == 0) {
+            System.out.println("No active notes!");
+        }
+        else {
+            System.out.println(noteAPI.listActiveNotes());
+            int noteIndex = readNextInt("Enter active note index to update item description from => ");
+            Note note = noteAPI.findNote(noteIndex);
+            if ((note == null) || !(noteAPI.isValidIndex(noteIndex))) {
+                System.out.println("Unable to access note! Invalid note index [" + noteIndex + "].");
+            }
+            else if (note.isNoteArchived()) {
+                System.out.println("Unable to update item description! This note is archived [" +
+                        Utilities.booleanToYN(note.isNoteArchived()) + "].");
+            }
+            else if (note.numberOfItems() == 0) {
+                System.out.println("This note has no items!");
+            }
+            else {
+                    System.out.println(note.listItems());
+                    int itemIndex = readNextInt("Enter item index to update => ");
+                    Item itemToUpdate = note.findItem(itemIndex);
+                    if (itemToUpdate == null) {
+                        System.out.println("Invalid item index! [" + itemIndex + "]");
+                    }
+                    else {
+                        String newDesc = readNextLine("Enter new item description => ");
+                        boolean oldStatus = itemToUpdate.isItemCompleted();
+                        if (note.updateItem(itemIndex, newDesc, oldStatus)) {
+                            System.out.println("Item updated successfully.");
+                        }
+                        else {
+                            System.out.println("Unable to update item having completed status: " +
+                                    Utilities.booleanToYN(oldStatus) +", and index: " + itemIndex + ", " +
+                                    "with new description [" + newDesc + "].");
+                    }
+                }
+            }
+        }
     }
 
     /*
@@ -176,7 +424,31 @@ public class Driver {
     - is invalid or doesn’t have any items, inform the user of this.
     */
     private void deleteItemFromNote() {
-        // Implementation for deleting an item from a note
+        if (noteAPI.numberOfActiveNotes() == 0) {
+            System.out.println("No active notes!");
+        }
+        else {
+            System.out.println(noteAPI.listActiveNotes());
+            int noteIndex = readNextInt("Enter active note index to delete item from => ");
+            Note note = noteAPI.findNote(noteIndex);
+            if ((note == null) || !(noteAPI.isValidIndex(noteIndex))) {
+                System.out.println("Unable to access note! Invalid note index [" + noteIndex + "].");
+            } else if (note.isNoteArchived()) {
+                System.out.println("Unable to delete item from note! This note is archived [" + Utilities.booleanToYN(note.isNoteArchived()) + "].");
+            } else if (note.numberOfItems() == 0) {
+                System.out.println("No note items! [" + note.numberOfItems() + "]");
+            } else {
+                System.out.println(note.listItems());
+                int itemIndex = readNextInt("Enter the index of the item to delete => ");
+                Item deletedItem = note.deleteItem(itemIndex);
+                if (deletedItem != null) {
+                    System.out.println("Item deleted successfully: " + deletedItem);
+                } else {
+                    System.out.println("Unable to delete item! Invalid item index [" + itemIndex + "].");
+                }
+                // Implementation for deleting an item from a note
+            }
+        }
     }
 
     /*
@@ -192,19 +464,67 @@ public class Driver {
     - is invalid or doesn’t have any items, inform the user of this.
     */
     private void markCompletionOfItem() {
-        // Implementation for marking an item's completion status
+        if (noteAPI.numberOfActiveNotes() == 0) {
+            System.out.println("No active notes saved!");
+        }
+        else {
+            System.out.println(noteAPI.listActiveNotes());
+            int noteIndex = readNextInt("Enter active note index to mark item completion from  => ");
+
+            if (!(noteAPI.isValidIndex(noteIndex))) {
+                System.out.println("Unable to access note! Invalid note index [" + noteIndex + "].");
+            }
+            else {
+                Note note = noteAPI.findNote(noteIndex);
+                if (note == null) {
+                    System.out.println("Nothing at that index! [" + noteIndex + "]");
+                }
+                else if (note.isNoteArchived()) {
+                    System.out.println("Unable to mark items completed in note! This note is archived.");
+                }
+                else if (note.numberOfItems() == 0) {
+                    System.out.println("No items in this note! [" + note.numberOfItems() + "]");
+                }
+                else {
+                    System.out.println(note.listItems());
+                    int itemIndex = readNextInt("Enter index of the item => ");
+                    Item item = note.findItem(itemIndex);
+                    if (item == null) {
+                        System.out.println("Invalid item index! [" + itemIndex + "]");
+                    }
+                    else {
+                        char itemCompletedChar = readNextChar("Mark item as completed? [Y/N] => ");
+                        boolean completedBool = YNtoBoolean(itemCompletedChar);
+                        item.setItemCompleted(completedBool);
+                        if (completedBool) {
+                            System.out.println("Item successfully marked as completed.");
+                        }
+                        else {
+                            System.out.println("Item successfully marked as to-do.");
+                        }
+                    }
+                    // Implementation for marking an item's completion status
+                }
+            }
+        }
     }
 
     private void printAllNotes() {
-    // In Picture of spec class, but no more detail given! Beware.
+    // Helper method
+        System.out.println("Number of active and archived notes: " + noteAPI.numberOfNotes());
+        System.out.println(noteAPI.listAllNotes());
     }
 
-    private void printArchivedNotes {
-// In Picture of spec class, but no more detail given! Beware.
+    private void printArchivedNotes() {
+        // Helper method for printActiveAndArchivedReport()
+        System.out.println("Number of archived notes: " + noteAPI.numberOfArchivedNotes());
+        System.out.println(noteAPI.listArchivedNotes());
     }
 
     private void printActiveNotes() {
-        // In Picture of spec class, but no more detail given! Beware.
+        // Helper method for printActiveAndArchivedReport()
+        System.out.println("Number of active notes: " + noteAPI.numberOfActiveNotes());
+        System.out.println(noteAPI.listActiveNotes());
     }
 
     /*
@@ -215,6 +535,15 @@ public class Driver {
     */
     private void printActiveAndArchivedReport() {
         // Implementation for printing all notes and their items
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            System.out.println("Active notes: ");
+            System.out.println(noteAPI.listActiveNotes());
+            System.out.println("Archived notes: ");
+            System.out.println(noteAPI.listArchivedNotes());
+        }
     }
 
     /*
@@ -225,6 +554,7 @@ public class Driver {
     */
     private void archiveNotesWithAllItemsComplete() {
         // Implementation for archiving notes with all items complete
+        System.out.println(noteAPI.archiveNotesWithAllItemsComplete());
     }
 
     /*
@@ -236,6 +566,18 @@ public class Driver {
     */
     private void printNotesBySelectedCategory() {
         // Implementation for printing notes by selected category
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            String category = readNextLine("Enter a category [Home, Work, Hobby, Holiday, College] => ");
+            if ((category == null) || !(CategoryUtility.isValidCategory(category))) {
+                System.out.println("Invalid category selected! [" + category + "]");
+            }
+            else {
+                System.out.println(noteAPI.listNotesBySelectedCategory(category));
+            }
+        }
     }
 
     /*
@@ -247,6 +589,18 @@ public class Driver {
     */
     private void printNotesByPriority() {
         // Implementation for printing notes by priority
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            int priority = readNextInt("Enter a priority [1-5] => ");
+            if ((priority >= 1) && (priority <= 5)) {
+                System.out.println(noteAPI.listNotesBySelectedPriority(priority));
+            }
+            else {
+                System.out.println("Invalid priority selected! [" + priority + "]");
+            }
+        }
     }
 
     /*
@@ -260,6 +614,13 @@ public class Driver {
     */
     private void searchNotesByTitle() {
         // Implementation for searching notes by title
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            String searchTitle = readNextLine("Enter search string for note title => ");
+            System.out.println(noteAPI.searchNotesByTitle(searchTitle));
+        }
     }
 
 
@@ -271,6 +632,12 @@ public class Driver {
     */
     private void printAllTodoItems() {
         // Implementation for printing all TODO items
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            System.out.println(noteAPI.listTodoItems());
+        }
     }
 
     /*
@@ -282,6 +649,13 @@ public class Driver {
     */
     private void printOverallItemsTodoComplete() {
         // Implementation for printing overall TODO and completed items count
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            System.out.println("Number of completed items: " + noteAPI.numberOfCompleteItems());
+            System.out.println("Number of to-do items: " + noteAPI.numberOfTodoItems());
+        }
     }
 
     /*
@@ -292,6 +666,19 @@ public class Driver {
     */
     private void printItemCompletionStatusByCategory() {
         // Implementation for printing item completion status by category
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved!");
+        }
+        else {
+            String category = readNextLine("Enter a category [Home, Work, Hobby, Holiday, College] => ");
+            if ((category == null) || !(CategoryUtility.isValidCategory(category))) {
+                System.out.println("Invalid category selected! [" + category + "]");
+            }
+            else {
+                System.out.println(noteAPI.listItemStatusByCategory(category));
+            }
+
+        }
     }
 
     /*
@@ -304,6 +691,13 @@ public class Driver {
     */
     private void searchItemsByDescription() {
         // Implementation for searching items by description
+        if (noteAPI.numberOfNotes() == 0) {
+            System.out.println("No notes saved.");
+        }
+        else {
+            String searchDesc = readNextLine("Enter search text for item description: ");
+            System.out.println(noteAPI.searchItemByDescription(searchDesc));
+        }
     }
 
 
@@ -316,6 +710,12 @@ public class Driver {
     */
     private void save() {
         // Implementation for saving notes to XML
+        try {
+            noteAPI.save();
+            System.out.println("Notes saved successfully.");
+        } catch (Exception e) {
+            System.out.println("Error saving notes! [" + e.getMessage() + "]");
+        }
     }
 
     /*
@@ -325,6 +725,12 @@ public class Driver {
     */
     private void load() {
         // Implementation for loading notes from XML
+        try {
+            noteAPI.load();
+            System.out.println("Notes loaded successfully.");
+        } catch (Exception e) {
+            System.out.println("Error loading notes! [" + e.getMessage() + "]");
+        }
     }
 
     /*
@@ -333,5 +739,7 @@ public class Driver {
     */
     private void exitApplication() {
         // Implementation for exiting the application
+        System.out.println("Exiting... goodbye");
+        System.exit(0);
     }
 }

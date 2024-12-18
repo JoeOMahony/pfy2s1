@@ -56,11 +56,17 @@ This method should attempt to retrieve the note stored at the index number passe
         /* This method deletes an note at the index parameter (if that index exists)
            and returns the deleted note object. If the index does not exist in the
            notes list, then null should be returned. */
-        if (!(isValidIndex(indexToDelete))) {
-            return null;
-        }
-        return notes.remove(indexToDelete);
-
+       if (isValidIndex(indexToDelete)) {
+           Note noteToDelete = notes.get(indexToDelete);
+           for (int i = 0; i < noteToDelete.getItems().size(); i++) {
+               noteToDelete.deleteItem(i);
+           }
+           notes.remove(indexToDelete);
+           return noteToDelete;
+       }
+       else {
+           return null;
+       }
     }
 
     public boolean archiveNote(int indexToArchive) {
@@ -354,7 +360,7 @@ functionality, except you are dealing with Archived notes, not active ones.
         String notesByCategory = "";
 
         int categoryNoteCount = numberOfNotesByCategory(category);
-        notesByCategory += categoryNoteCount + " notes with category " + category.toUpperCase() + ":\n";
+        notesByCategory += categoryNoteCount + " notes with category " + category+ ":\n";
 
         for (int i = 0; i < notes.size(); i++) {
             Note note = notes.get(i);
@@ -442,13 +448,12 @@ The functionality of this method is the same as the
         Primary School 2:30 (Note: School Run)
         Hoover Upstairs (Note: Hoover House)
  */
-        if (notes == null || notes.isEmpty()) {
+        if ((notes == null) || (notes.isEmpty())) {
             return "No notes stored";
         }
-        else if (!(isValidCategory(category)) || (numberOfNotesByCategory(category) == 0)) {
+        if (!(isValidCategory(category))) {
             return "No notes with category " + category;
         }
-
         int completedCtr = 0;
         String completedItems = "";
         int todoCtr = 0;
@@ -460,8 +465,7 @@ The functionality of this method is the same as the
             if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
                 if (note.getNoteCategory().equals(category)) {
                     for (Item item : note.getItems()) {
-                        String itemDescription = "";
-                        itemDescription += item.getItemDescription() + " (Note: " + note.getNoteTitle() + ")\n";
+                        String itemDescription = item.getItemDescription() + " (Note: " + note.getNoteTitle() + " )\n";
                         if (item.isItemCompleted()) {
                             completedItems += itemDescription;
                             completedCtr++;
@@ -475,12 +479,12 @@ The functionality of this method is the same as the
             }
         }
 
-        itemStatusByCategory += "Number Completed: " + completedCtr + "\n";
+        itemStatusByCategory += "Number completed: " + completedCtr + "\n";
         itemStatusByCategory += completedItems;
         itemStatusByCategory += "Number TODO: " + todoCtr + "\n";
         itemStatusByCategory += todoItems;
 
-        return itemStatusByCategory;
+        return itemStatusByCategory.trim();
     }
 
 // -------------- END OF LISTING METHODS --------------
@@ -523,7 +527,7 @@ This method first checks that the index, passed as a parameter, is valid.
             String noteTitle = note.getNoteTitle();
             // Moved lowercase change to below
             if (noteTitle.contains(searchTitle)) {
-                searchResultsByTitle += "Note " + notes.indexOf(note) + " : " + note.toString() + "\n";
+                searchResultsByTitle += "Note " + notes.indexOf(note) + ": " + note.toString() + "\n";
             }
         }
 
@@ -556,17 +560,15 @@ This method first checks that the index, passed as a parameter, is valid.
             if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
                 for (Item item : note.getItems()) {
                     if (item.getItemDescription().contains(searchItemDescription)) {
-                        searchResultsByDescription += notes.indexOf(note) + " : " +
-                                note.getNoteTitle() + "\n" + item.toString() + "\n";
+                        searchResultsByDescription += notes.indexOf(note) + ": " +
+                                note.getNoteTitle() + "\n" + notes.indexOf(item) +": " + item.toString() + "\n";
                     }
                 }
             }
         }
-
         if (searchResultsByDescription.isEmpty()) {
             return "No items found for: " + searchItemDescription;
         }
-
         return searchResultsByDescription;
     }
 

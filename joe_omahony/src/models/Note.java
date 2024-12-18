@@ -71,26 +71,14 @@ The responsibility for this class is to manage a single Note in the System.
         // noteCategory: should contain only one of the following categories: “Home”, “Work”,
         // “Hobby”, “Holiday”, “College”. When creating a new note, if no category is
         // supplied, you should default the empty String, “”.
-        if ((noteCategory == null) || (noteCategory.isBlank())) {
-            this.noteCategory = "";
-        }
-        else if (isValidCategory(noteCategory.trim())) {
+        if (isValidCategory(noteCategory.trim())) {
             this.noteCategory = noteCategory;
         }
-        else if (noteCategory.trim() == "home") {
-            this.noteCategory = "Home";
+        else if (!(this.noteCategory.isEmpty())) {
+            // do nothing
         }
-        else if (noteCategory.trim() == "work") {
-            this.noteCategory = "Work";
-        }
-        else if (noteCategory.trim() == "hobby") {
-            this.noteCategory = "Hobby";
-        }
-        else if (noteCategory.trim() == "holiday") {
-            this.noteCategory = "Holiday";
-        }
-        else if (noteCategory.trim() == "college") {
-            this.noteCategory = "College";
+        else {
+            this.noteCategory = "";
         }
     }
 

@@ -95,7 +95,7 @@ public class NoteAPI {
 
     /**
      * Deletes the {@link Note} at the specified index, if valid.
-     * Also deletes all {@link Item} objects associated with that note (cascading delete needed for {@link NoteAPITest}).
+     * Also deletes all {@link Item} objects associated with that note (cascading delete needed for NoteAPITest).
      * If the index is valid, deletes the {@link Note} and returns the deleted {@link Note}.
      * Otherwise, returns {@code null}.
      *

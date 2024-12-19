@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"utils","l":"CategoryUtility"},{"p":"main","l":"Driver"},{"p":"models","l":"Item"},{"p":"models","l":"Note"},{"p":"controllers","l":"NoteAPI"},{"p":"utils","l":"ScannerInput"},{"p":"utils","l":"Utilities"}];updateSearchResults();

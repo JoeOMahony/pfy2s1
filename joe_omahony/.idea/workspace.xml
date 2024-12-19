@@ -5,13 +5,86 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95686352-a09c-46fe-9f38-074d647c8a88" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter_5_10_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/allclasses-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/allpackages-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/controllers/NoteAPI.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/controllers/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/controllers/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/element-list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/help-doc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/index-all.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/legal/ADDITIONAL_LICENSE_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/legal/ASSEMBLY_EXCEPTION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/legal/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/legal/dejavufonts.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/legal/jquery.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/legal/jqueryUI.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/main/Driver.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/main/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/main/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/member-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/models/Item.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/models/Note.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/models/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/models/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/module-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/overview-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/overview-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/package-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/copy.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-Bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-BoldOblique.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-BoldOblique.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-Oblique.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-Oblique.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-Bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-BoldOblique.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-BoldOblique.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-Oblique.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-Oblique.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-Bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-BoldItalic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-BoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-Italic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-Italic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/dejavu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/glass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/link.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/resource-files/x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/script-files/jquery-3.7.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/script-files/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/script-files/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/script-files/search-page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/script-files/search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/tag-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/type-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/utils/CategoryUtility.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/utils/ScannerInput.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/utils/Utilities.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/utils/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/utils/package-tree.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/joe_omahony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/joe_omahony.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/NoteAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/NoteAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/NoteAPITest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/ItemTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Note.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/CategoryUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/CategoryUtility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Utilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Utilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/NoteTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/ScannerInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ScannerInput.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,13 +150,13 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.NoteAPITest">
+  <component name="RunManager" selected="JUnit.NoteTest">
     <configuration name="ItemTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joe_omahony" />
       <extension name="coverage">
@@ -163,9 +236,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NoteAPITest" />
         <item itemvalue="JUnit.NoteTest" />
         <item itemvalue="JUnit.ItemTest" />
+        <item itemvalue="JUnit.NoteAPITest" />
         <item itemvalue="JUnit.NoteTest$BoilerPlateTests.toStringContainsAllFieldsInObject" />
         <item itemvalue="JUnit.NoteAPITest$FindingSearchingMethods.searchNotesByTitleReturnsNotesFoundWhenArrayListHasNotesMatchingSearchTitle" />
       </list>

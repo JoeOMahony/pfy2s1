@@ -408,7 +408,7 @@ the add.
      */
     @Override
     public String toString() {
-        // This method builds a user friendly string representation of the
+        // This method builds a user-friendly string representation of the
         // object and returns it e.g.
         return noteTitle + ", " + "Priority=" + notePriority + ", " + "Category=" + noteCategory + ", " + "Archived="
                 + booleanToYN(isNoteArchived()) +  "\n" + this.listItems();
@@ -418,7 +418,7 @@ the add.
     Fields
 
     There are five private fields in the Note class:
-    notetitle: is maximum 20 characters. When creating a new note, if no title is supplied, you should default the text
+    noteTitle: is maximum 20 characters. When creating a new note, if no title is supplied, you should default the text
     “No Title”. When updating noteTitle, you should only update if the value is less than or equal to 20.
 
     notePriority: should only contain a value from 1 to 5 inclusive. When creating a new note, if no priority is

@@ -20,7 +20,6 @@ import java.util.Scanner;
  * This class provides methods for the robust handling of I/O using Scanner.
  * It creates a new Scanner object for each read from the user, thereby
  * eliminating the Scanner bug (where the buffers don't flush correctly after an int read).
- *
  * The methods also parse the numeric data entered to ensure it is correct. If it isn't correct,
  * the user is prompted to enter it again.
  *

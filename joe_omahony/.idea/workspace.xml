@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95686352-a09c-46fe-9f38-074d647c8a88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/notes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/NoteAPITest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/ItemTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/NoteTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/CategoryUtilityTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/UtilitiesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/NoteAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/NoteAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Note.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/CategoryUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/CategoryUtility.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

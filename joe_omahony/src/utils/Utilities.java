@@ -14,7 +14,21 @@ into your utils package and use it like we have been doing
  */
 
 package utils;
-
+/**
+ * The responsibility of the {@code Utilities} class is to provide utility methods used throughout the application.
+ *
+ * <h4>Purpose</h4>
+ * <ul>
+ *     <li>Truncating and validating string lengths.</li>
+ *     <li>Converting boolean values to/from specific formats.</li>
+ *     <li>Ensuring numeric values fall within certain ranges.</li>
+ *     <li>Prompting the user to try an action again in case of invalid input, improving user experience.</li>
+ * </ul>
+ * <b>This class was provided in the assignment spec, with the exception of the {@code tryAgain()} method.</b>
+ *
+ * @author Dave Hearne, Joe O'Mahony
+ * @version 1.1
+ */
 public class Utilities {
 
     /**
@@ -98,6 +112,30 @@ public class Utilities {
         return ((numberToCheck >= min) && (numberToCheck <= max));
     }
 
+    /**
+     * Prompts the user to try again, then converts the user's response to a boolean value.
+     * {@link main.Driver} uses the Boolean response to do something, i.e. call the method from which it was invoked
+     * again to give the user a chance to re-enter/correct details. This method was added to avoid the user needing to
+     * go through the menu process again, including re-displaying the menu, when an input is deemed invalid.
+     * <br /><br />
+     * This method:
+     * <ul>
+     *   <li>Asks the user: "Would you like to try again? [Y/N] => "</li>
+     *   <li>Reads the user’s char input ("Y" or "y", case-insensitive due to
+     *   {@link ScannerInput readNextChar(char)} implementation).</li>
+     *   <li>Converts the character to a boolean:
+     *       <ul>
+     *          <li>"Y" or "y" => {@code true}</li>
+     *          <li>"N" or "n" => {@code false}</li>
+     *       </ul>
+     *   </li>
+     * </ul>
+     * Any character input other than "Y"/"y"/"N"/"n" is handled by {@link ScannerInput readNextChar(char)}. This will
+     * ask the user to re-input the character if it's not valid.
+     *
+     * @return {@code true} if the user enters "Y" or "y", {@code false} if the user enters "N" or "n" or any other character.
+     * @author Joe O'Mahony
+     */
     public static boolean tryAgain() {
         char ynTryAgainChar = ScannerInput.readNextChar("Would you like to try again? [Y/N] => ");
         return YNtoBoolean(ynTryAgainChar);

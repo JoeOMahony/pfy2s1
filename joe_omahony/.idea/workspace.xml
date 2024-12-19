@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95686352-a09c-46fe-9f38-074d647c8a88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/xstream-1.4.21.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/joe_omahony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/joe_omahony.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/NoteAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/NoteAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Item.java" afterDir="false" />
@@ -55,37 +53,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Driver.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.ItemTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.NoteAPITest$FindingSearchingMethods.searchNotesByTitleReturnsNotesFoundWhenArrayListHasNotesMatchingSearchTitle.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.NoteAPITest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.NoteTest$BoilerPlateTests.toStringContainsAllFieldsInObject.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.NoteTest.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/joe/Documents/GitHub/pfy2s1/joe_omahony&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Driver.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.ItemTest.executor": "Run",
+    "JUnit.NoteAPITest$FindingSearchingMethods.searchNotesByTitleReturnsNotesFoundWhenArrayListHasNotesMatchingSearchTitle.executor": "Run",
+    "JUnit.NoteAPITest.executor": "Debug",
+    "JUnit.NoteTest$BoilerPlateTests.toStringContainsAllFieldsInObject.executor": "Coverage",
+    "JUnit.NoteTest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/joe/Documents/GitHub/pfy2s1/joe_omahony",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.editor",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.ItemTest">
+}]]></component>
+  <component name="RunManager" selected="JUnit.NoteAPITest">
     <configuration name="ItemTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joe_omahony" />
       <extension name="coverage">
@@ -165,9 +163,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.NoteAPITest" />
         <item itemvalue="JUnit.NoteTest" />
         <item itemvalue="JUnit.ItemTest" />
-        <item itemvalue="JUnit.NoteAPITest" />
         <item itemvalue="JUnit.NoteTest$BoilerPlateTests.toStringContainsAllFieldsInObject" />
         <item itemvalue="JUnit.NoteAPITest$FindingSearchingMethods.searchNotesByTitleReturnsNotesFoundWhenArrayListHasNotesMatchingSearchTitle" />
       </list>

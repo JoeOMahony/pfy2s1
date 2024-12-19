@@ -10,10 +10,29 @@ import static utils.Utilities.YNtoBoolean;
 import static utils.Utilities.tryAgain;
 
 import utils.CategoryUtility;
-import utils.ScannerInput;
 import utils.Utilities;
 
-
+/**
+ * The responsibility of the {@code Driver} class is to run the application.
+ *
+ * <h4>Purpose:</h4>
+ * <ul>
+ *     <li>Handle user input {@link utils.ScannerInput}</li>
+ *     <li>Display information to the console</li>
+ *     <li>Call methods in the {@link NoteAPI} class to perform CRUD operations</li>
+ * </ul>
+ * This is the only class that handles System.out.print statements and direct user input calls.
+ * <ol>
+ *     <li>The {@code main} method creates a new {@code Driver} instance, which calls {@code runMenu()}.</li>
+ *     <li>{@code runMenu()} continuously displays a main menu and handles user selections until the user chooses to
+ *     exit. A pause is set so the user has time to think, with a keypress needed to re-display the menu text block.</li>
+ *     <li>User choices correspond to methods that gather necessary input and call the appropriate
+ *     {@link NoteAPI} methods through the switch statement.</li>
+ * </ol>
+ *
+ * @author Joe O'Mahony, Dave Hearne (Adapted from Shop V5.0)
+ * @version 2.0
+ */
 public class Driver {
     /*
     The responsibility of the Driver class is to run the app and perform I/O with the user.
@@ -27,12 +46,22 @@ public class Driver {
     noteAPI: this holds and manages the collection (ArrayList) of notes and is
      instantiated at variable declaration time.
     */
+    /**
+     * Manages the collection of notes
+     * The main access point for all note-related operations within the Driver class.
+     */
     private NoteAPI noteAPI = new NoteAPI();
 
     /*
     The main method has one line of code:
     new Driver();
     */
+    /**
+     * Entry point of the application. Creates a new instance of the {@code Driver} class, triggering {@code runMenu()},
+     * which in turn triggers the application to run.
+     *
+     * @param args Arguments passed to main()
+     */
     public static void main(String[] args) {
         new Driver();
     }
@@ -44,60 +73,80 @@ public class Driver {
         runMenu();
     }
     */
+    /**
+     * Constructs a new {@code Driver} instance and starts the application by calling {@code runMenu()}.
+     */
     public Driver() {
         runMenu();
     }
 
+    /**
+     * Displays the main menu of options to the user and returns their selection.
+     * <br /><b>This menu design was directly copy-and-pasted from the online assignment spec.</b>
+     *
+     * @return an integer representing the user's choice for the switch statement
+     * @author Dave Hearne, Joe O'Mahony
+     */
     private int mainMenu() {
-/*
-    Menu Displayed
-    Using the same approach adopted when developing the Shop projects, the
-    following menu is continually displayed to the user:
-    [Menu options as described in the specification]
+        /*
+        Menu Displayed
+        Using the same approach adopted when developing the Shop projects, the
+        following menu is continually displayed to the user:
+        [Menu options as described in the specification]
 
-    Note that the mainMenu() method displays the above menu and returns the
-    user choice.
-    The runMenu method contains the switch statement that processes the user choice.
-*/
+        Note that the mainMenu() method displays the above menu and returns the
+        user choice.
+        The runMenu method contains the switch statement that processes the user choice.
+        */
         System.out.println(
                 "-------------------------------------------------------\n" +
-                "|                    NOTE KEEPER APP                  |\n" +
-                "|-----------------------------------------------------|\n" +
-                "| NOTE MENU                                           |\n" +
-                "|  1) Add a note                                      |\n" +
-                "|  2) List all notes (all, active, archived)          |\n" +
-                "|  3) Update a note                                   |\n" +
-                "|  4) Delete a note                                   |\n" +
-                "|  5) Archive a note                                  |\n" +
-                "|-----------------------------------------------------|\n" +
-                "| ITEM MENU                                           |\n" +
-                "|  6) Add an item to a note                           |\n" +
-                "|  7) Update item description on a note               |\n" +
-                "|  8) Delete an item from a note                      |\n" +
-                "|  9) Mark item as complete/todo                      |\n" +
-                "|-----------------------------------------------------|\n" +
-                "| REPORT MENU FOR NOTES                               |\n" +
-                "| 10) All notes and their items (active & archived)   |\n" +
-                "| 11) Archive notes whose items are all complete      |\n" +
-                "| 12) All notes within a selected Category            |\n" +
-                "| 13) All notes within a selected Priority            |\n" +
-                "| 14) Search for all notes (by note title)            |\n" +
-                "------------------------------------------------------|\n" +
-                "| REPORT MENU FOR ITEMS                               |\n" +
-                "| 15) All items that are todo (with note title)       |\n" +
-                "| 16) Overall number of items todo/complete           |\n" +
-                "| 17) Todo/complete items by specific Category        |\n" +
-                "| 18) Search for all items (by item description )     |\n" +
-                "------------------------------------------------------|\n" +
-                "| SETTINGS MENU                                       |\n" +
-                "| 20) Save                                            |\n" +
-                "| 21) Load                                            |\n" +
-                "|  0) Exit                                            |\n" +
-                "-------------------------------------------------------");
+                        "|                    NOTE KEEPER APP                  |\n" +
+                        "|-----------------------------------------------------|\n" +
+                        "| NOTE MENU                                           |\n" +
+                        "|  1) Add a note                                      |\n" +
+                        "|  2) List all notes (all, active, archived)          |\n" +
+                        "|  3) Update a note                                   |\n" +
+                        "|  4) Delete a note                                   |\n" +
+                        "|  5) Archive a note                                  |\n" +
+                        "|-----------------------------------------------------|\n" +
+                        "| ITEM MENU                                           |\n" +
+                        "|  6) Add an item to a note                           |\n" +
+                        "|  7) Update item description on a note               |\n" +
+                        "|  8) Delete an item from a note                      |\n" +
+                        "|  9) Mark item as complete/todo                      |\n" +
+                        "|-----------------------------------------------------|\n" +
+                        "| REPORT MENU FOR NOTES                               |\n" +
+                        "| 10) All notes and their items (active & archived)   |\n" +
+                        "| 11) Archive notes whose items are all complete      |\n" +
+                        "| 12) All notes within a selected Category            |\n" +
+                        "| 13) All notes within a selected Priority            |\n" +
+                        "| 14) Search for all notes (by note title)            |\n" +
+                        "------------------------------------------------------|\n" +
+                        "| REPORT MENU FOR ITEMS                               |\n" +
+                        "| 15) All items that are todo (with note title)       |\n" +
+                        "| 16) Overall number of items todo/complete           |\n" +
+                        "| 17) Todo/complete items by specific Category        |\n" +
+                        "| 18) Search for all items (by item description )     |\n" +
+                        "------------------------------------------------------|\n" +
+                        "| SETTINGS MENU                                       |\n" +
+                        "| 20) Save                                            |\n" +
+                        "| 21) Load                                            |\n" +
+                        "|  0) Exit                                            |\n" +
+                        "-------------------------------------------------------");
 
         return readNextInt("Enter an option => ");
     }
 
+    /**
+     * Runs the menu loop.
+     * <h4>Menu Loop</h4>
+     * <ul>
+     * <li>Continuously displays the main menu,</li>
+     * <li>Processes user input when received,</li>
+     * <li>Does something(s) via sending the user input integer to the switch, which calls to the relevant method,</li>
+     * <li>Stops when the user chooses to exit (option 0).</li>
+     * </ul>
+     */
     private void runMenu() {
         int option = mainMenu();
         while (option != 0) {
@@ -141,7 +190,6 @@ public class Driver {
         exitApplication();
     }
 
-// ---------- SWITCH OPTIONS -------------
     /*
     Option 1 - Add a note
     Create an addNote() method in Driver. This method asks the user to enter the following:
@@ -150,8 +198,22 @@ public class Driver {
     - note category
     The note is added to the ArrayList of notes (i.e., in noteAPI). If the add was successful,
         output a message to the console alerting the user of this. Likewise, if the add was not
-            successful, alert the user to this via a message printed to the console.
+        successful, alert the user to this via a message printed to the console.
     */
+
+    /**
+     * Prompts the user to add a new {@link Note}.
+     * <ul>
+     *   <li>Prompts user for the note's title, priority, and category.</li>
+     *   <li>Validates the category via {@link utils.CategoryUtility}.</li>
+     *   <li>If valid, attempts to add the note via {@link NoteAPI}.</li>
+     *   <li>Tells the user the result</li>
+     *   <ul>
+     *   <li>If the add was unsuccessful, gives details and offers the option to try again by calling the method again.</li>
+     *   </ul>
+     * </ul>
+     * Option 1 in switch.
+     */
     private void addNote() {
         String title = readNextLine("Enter note title => ");
         int priority = readNextInt("Enter note priority [1-5] => ");
@@ -167,7 +229,8 @@ public class Driver {
             if (noteAPI.add(newNote)) {
                 System.out.println("Note added successfully.");
             } else {
-                System.out.println("Unable to add note with attributes:\n" + "[Title: " + title + ", Priority: " + priority + ", Category: " + category + "].");
+                System.out.println("Unable to add note with attributes:\n" +
+                        "[Title: " + title + ", Priority: " + priority + ", Category: " + category + "].");
                 if (tryAgain()) {
                     addNote();
                 }
@@ -179,18 +242,34 @@ public class Driver {
     Option 2 - List all notes
     Create a viewNotes() method in Driver. This method asks the user if they
         would like to see:
-    - All notes (call the Driver method printAllNotes() that prints the number
-        of notes along with all notes and their associated items)
-    - Active notes (call the Driver method printActiveNotes() that prints the
-        number of active notes along with all active notes and their associated
-        items)
-    - Archived notes (call the Driver method printArchivedNotes() that prints
-        the number of archived notes along with all archived notes and their
-        associated items)
+    - All notes (printAllNotes())
+    - Active notes (printActiveNotes())
+    - Archived notes (printArchivedNotes())
     If there are no notes stored, inform the user via a console message.
     */
+
+    /**
+     * Prompts the user to view notes in one of three statuses.
+     * <h4>Three note statuses</h4>
+     * <ol>
+     *     <li>ALL notes [ACTIVE + ARCHIVED]</li>
+     *     <li>ACTIVE notes only</li>
+     *     <li>ARCHIVED notes only</li>
+     * </ol>
+     * If no notes exist, informs the user via a console message and exit.
+     * Otherwise prompts for a choice [1-3] and calls the relevant helper method.
+     * <br /><h4>Helper methods</h4>
+     * <ul>
+     *     <li>{@code printAllNotes()}</li>
+     *     <li>{@code printActiveNotes()}</li>
+     *     <li>{@code printArchivedNotes()}</li>
+     * </ul>
+     * Option 2 in switch.
+     * <br /><br /><b>This menu design was directly copy-and-pasted from the online assignment spec.</b>
+     * @author Dave Hearne, Joe O'Mahony
+     */
     private void viewNotes() {
-        if (noteAPI.numberOfNotes() == 0) {
+        if ((noteAPI == null) || (noteAPI.numberOfNotes() == 0)) { // added null
             System.out.println("No notes saved!");
         }
         else {
@@ -213,18 +292,24 @@ public class Driver {
 
     /*
     Option 3 - Update a note
-    Create an updateNote() method in Driver. This method lists all the notes. If notes:
-    - haven’t been added yet, inform the user via a console message.
-    - have been added, prompt the user to enter the index number of the note they wish to update.
-        - If it is a valid index, prompt the user to enter new values for note
-            title, note priority, and note category.
-            Pass the new values along with the selected index number to noteAPI
-            for updating.
-            Inform the user whether the update was successful or not.
-        - If not a valid index, inform the user via a console message.
+    updateNote() method: lists notes, validates user index choice, updates selected note if valid.
     */
+
+    /**
+     * Prompts a user to update an existing note by:
+     * <ul>
+     *   <li>Checking that there are notes saved,</li>
+     *   <li>Listing all notes,</li>
+     *   <li>Prompting for a note index</li>
+     *   <li>Validating user index choice,</li>
+     *   <li>Asking for new title, priority, and category,</li>
+     *   <li>Formatting the inputted category, then validating it,</li>
+     *   <li>Attempting the update by {@link NoteAPI updateNote()},</li>
+     *   <li>Informing the user of success/failure and offering to retry if needed</li>
+     * </ul>
+     * Option 3 in switch.
+     */
     private void updateNote() {
-        // Implementation for updating a note
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved!");
         }
@@ -253,8 +338,8 @@ public class Driver {
                     if (noteAPI.updateNote(index, updatedTitle, updatedPriority, updatedCategory)) {
                         System.out.println("Note updated successfully.");
                     } else {
-                        System.out.println("Unable to update note at index " + index + " with options:\n" + "[Title: "
-                                + updatedTitle + " / Priority: " + updatedPriority + " / Category: " + updatedCategory + "]");
+                        System.out.println("Unable to update note at index " + index + " with options:\n" +
+                                "[Title: " + updatedTitle + " / Priority: " + updatedPriority + " / Category: " + updatedCategory + "]");
                         if (tryAgain()) {
                             updateNote();
                         }
@@ -266,15 +351,23 @@ public class Driver {
 
     /*
     Option 4 - Delete a note
-    Create a deleteNote() method in Driver. This method lists all the notes. If notes:
-    - haven’t been added yet, inform the user via a console message.
-    - have been added, prompt the user to enter the index number of the note they wish to delete.
-      Pass the selected index number to noteAPI for deleting.
-      Inform the user whether the delete was successful or not.
-      If the delete was successful, also print the deleted note to the console.
+    deleteNote() method: lists notes, validates user index, attempts to delete note, informs user of outcome.
     */
+
+    /**
+     * Prompts the user to delete a note by:
+     * <ul>
+     *     <li>Checking that there are notes saved,</li>
+     *   <li>Listing all notes,</li>
+     *   <li>Prompting for the note index,</li>
+     *   <li>Validating the note index,</li>
+     *   <li>Attempting deletion via {@link NoteAPI deleteNote()},</li>
+     *   <li>Informing the user of success/failure and offering to retry,</li>
+     *   <li>If successful, displays the deleted note</li>
+     * </ul>
+     * Option 4 in switch.
+     */
     private void deleteNote() {
-        // Implementation for deleting a note
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved!");
         }
@@ -306,14 +399,25 @@ public class Driver {
 
     /*
     Option 5 - Archive a note
-    Create an archiveNote() method in Driver.
-    This method lists all the ACTIVE notes. If there are ACTIVE notes,
-        ask the user to enter the index of the active note they wish to archive.
-    Pass the selected index number to noteAPI for archiving.
-    Inform the user whether the archive was successful or not.
+    archiveNote() method: lists active notes, prompts user for index, attempts to archive.
     */
+
+    /**
+     * Prompts the user to archive a note by:
+     * <ul>
+     *   <li>Checking that there are active notes saved,</li>
+     *   <li>Listing all active notes</li>
+     *   <li>Asking user for the index of the active note to archive</li>
+     *   <li>Validating the provided index</li>
+     *   <li>Attempts archiving via {@link NoteAPI#archiveNote(int)}</li>
+     *   <li>Informs the user whether the note was successfully archived</li>
+     *   <li>Explains why archiving failed (invalid index, incomplete items, already archived) where possible</li>
+     *   <li>Selectively asks the user if they want to retry (if the note is already archived, no prompt to retry is
+     *   deemed necessary.</li>
+     * </ul>
+     * Option 5 in switch.
+     */
     private void archiveNote() {
-        // Implementation for archiving a note
         if (noteAPI.numberOfActiveNotes() == 0) {
             System.out.println("No active notes!");
         }
@@ -350,15 +454,21 @@ public class Driver {
     /*
     ITEM MENU Options
     Option 6 - Add an item to a note
-    Create an addItemToNote() method in Driver.
-
-    This method lists all the ACTIVE notes and asks the user to select the index
-     number of an ACTIVE note.
-
-    If the index number is valid, ask the user to enter the item description.
-    Pass the item description along with the selected index number to noteAPI for adding.
-    Inform the user whether the add was successful or not.
+    addItemToNote() method: lists active notes, gets note index, then asks for item description.
     */
+
+    /**
+     * Prompts the user to add an {@link Item} to a note (which must be {@code active}:
+     * <ul>
+     *   <li>Checks that there are active notes saved,</li>
+     *   <li>Lists all active notes</li>
+     *   <li>Prompts user for a note index</li>
+     *   <li>Validates the note index</li>
+     *   <li>If valid and the note is active, asks for item description and adds it</li>
+     *   <li>Informs user of success/failure and offers to retry if needed</li>
+     * </ul>
+     * Option 6 in switch.
+     */
     private void addItemToNote() {
         if (noteAPI.numberOfActiveNotes() == 0) {
             System.out.println("No active notes!");
@@ -374,7 +484,7 @@ public class Driver {
                 }
             }
             else if (note.isNoteArchived()) {
-                 System.out.println("This note is already archived!");
+                System.out.println("This note is already archived!");
             }
             else {
                 String itemDesc = readNextLine("Enter item description => ");
@@ -390,25 +500,28 @@ public class Driver {
                 }
             }
         }
-        // Implementation for adding an item to a note
     }
 
     /*
     Option 7 - Update item description on a note
-    Create an updateItemDescInNote() method in Driver.
-
-    This method lists all the ACTIVE notes and asks the user to select the index
-     number of an ACTIVE note.
-    If the selected note:
-    - is valid and has items, ask the user to choose the item index number.
-      Then ask the user to enter the new item description.
-      Pass the item description, along with the selected item index number and
-       the existing note status (todo/completed) to the note for updating.
-      Inform the user whether the update was successful or not.
-    - is invalid or doesn’t have any items, inform the user of this.
+    updateItemDescInNote() method: lists active notes, validates chosen note and item, updates item description.
     */
+
+    /**
+     * Prompts the user to update an item's description on an active note:
+     * <ul>
+     *   <li>Checks that there are active notes saved</li>
+     *   <li>Lists active notes</li>
+     *   <li>Prompts user for a note index</li>
+     *   <li>Validates the note index</li>
+     *   <li>If valid and has items, prompts for item index and new description</li>
+     *   <li>Validates the note index for {@code null}</li>
+     *   <li>Uses {@link Note updateItem()} with the old item status to keep archived status unchanged</li>
+     *   <li>Informs user of success/failure and allows retry when appropriate </li>
+     * </ul>
+     * Option 7 in switch.
+     */
     private void updateItemDescInNote() {
-        // Implementation for updating an item's description in a note
         if (noteAPI.numberOfActiveNotes() == 0) {
             System.out.println("No active notes!");
         }
@@ -430,28 +543,28 @@ public class Driver {
                 System.out.println("This note has no items!");
             }
             else {
-                    System.out.println(note.listItems());
-                    int itemIndex = readNextInt("Enter item index to update => ");
-                    Item itemToUpdate = note.findItem(itemIndex);
-                    if (itemToUpdate == null) {
-                        System.out.println("Invalid item index! [" + itemIndex + "]");
+                System.out.println(note.listItems());
+                int itemIndex = readNextInt("Enter item index to update => ");
+                Item itemToUpdate = note.findItem(itemIndex);
+                if (itemToUpdate == null) {
+                    System.out.println("Invalid item index! [" + itemIndex + "]");
+                    if (tryAgain()) {
+                        updateItemDescInNote();
+                    }
+                }
+                else {
+                    String newDesc = readNextLine("Enter new item description => ");
+                    boolean oldStatus = itemToUpdate.isItemCompleted();
+                    if (note.updateItem(itemIndex, newDesc, oldStatus)) {
+                        System.out.println("Item updated successfully.");
+                    }
+                    else {
+                        System.out.println("Unable to update item with old status: " +
+                                Utilities.booleanToYN(oldStatus) + ", index: " + itemIndex + ", " +
+                                "and new description [" + newDesc + "].");
                         if (tryAgain()) {
                             updateItemDescInNote();
                         }
-                    }
-                    else {
-                        String newDesc = readNextLine("Enter new item description => ");
-                        boolean oldStatus = itemToUpdate.isItemCompleted();
-                        if (note.updateItem(itemIndex, newDesc, oldStatus)) {
-                            System.out.println("Item updated successfully.");
-                        }
-                        else {
-                            System.out.println("Unable to update item having completed status: " +
-                                    Utilities.booleanToYN(oldStatus) +", and index: " + itemIndex + ", " +
-                                    "with new description [" + newDesc + "].");
-                            if (tryAgain()) {
-                                updateItemDescInNote();
-                            }
                     }
                 }
             }
@@ -460,16 +573,21 @@ public class Driver {
 
     /*
     Option 8 - Delete an item from a note
-    Create a deleteItemFromNote() method in Driver.
-    This method lists all the ACTIVE notes and asks the user to select the index
-     number of an ACTIVE note.
-
-    If the selected note:
-    - is valid and has items, ask the user to choose the item index number.
-      Pass the selected item index number to the note for deleting.
-      Inform the user whether the delete was successful or not.
-    - is invalid or doesn’t have any items, inform the user of this.
+    deleteItemFromNote() method: lists active notes, validates index, deletes chosen item.
     */
+
+    /**
+     * Prompts the user to delete an item from an active note:
+     * <ul>
+     *   <li>Checks that there are active notes saved</li>
+     *   <li>Lists active notes</li>
+     *   <li>Prompts for a note index</li>
+     *   <li>Validates note index</li>
+     *   <li>If valid and has items, prompts for item index and deletes it</li>
+     *   <li>Informs user of success/failure and allows retry</li>
+     * </ul>
+     * Option 8 in switch.
+     */
     private void deleteItemFromNote() {
         if (noteAPI.numberOfActiveNotes() == 0) {
             System.out.println("No active notes!");
@@ -499,23 +617,29 @@ public class Driver {
                         deleteItemFromNote();
                     }
                 }
-                // Implementation for deleting an item from a note
             }
         }
     }
 
     /*
     Option 9 - Mark item as complete/todo
-    Create a markCompletionOfItem() method in Driver.
-    This method lists all the ACTIVE notes and asks the user to select the index
-     number of an ACTIVE note.
-    If the selected note:
-    - is valid and has items, ask the user to choose the item index number.
-      Then ask the user to enter the new item status (y/n).
-      Call the setItemCompleted() mutator on the item to update the status.
-      Inform the user whether the item is now set to completed or todo.
-    - is invalid or doesn’t have any items, inform the user of this.
+    markCompletionOfItem() method: lists active notes, prompts user for note/item index, toggles completion.
     */
+
+    /**
+     * Marks an item as complete or TODO:
+     * <ul>
+     *   <li>Checks that there are active notes saved</li>
+     *   <li>Lists active notes</li>
+     *   <li>Prompts for a note index</li>
+     *   <li>Validates note index</li>
+     *   <li>If valid, prompts for an item index and a "Y"/"N" response to mark it completed or todo by calling
+     *   {@link Utilities} method</li>
+     *   <li>Updates the item and informs the user of the new status</li>
+     *   <li>If it fails, offers retry where appropriate</li>
+     * </ul>
+     * Option 9 in switch.
+     */
     private void markCompletionOfItem() {
         if (noteAPI.numberOfActiveNotes() == 0) {
             System.out.println("No active notes saved!");
@@ -565,24 +689,35 @@ public class Driver {
                             System.out.println("Item successfully marked as to-do.");
                         }
                     }
-                    // Implementation for marking an item's completion status
                 }
             }
         }
     }
 
+    /**
+     * Prints all notes and the total number of notes.
+     * Helper method for {@code viewNotes()}
+     */
     private void printAllNotes() {
-    // Helper method
+        // Helper method
         System.out.println("Number of active and archived notes: " + noteAPI.numberOfNotes());
         System.out.println(noteAPI.listAllNotes());
     }
 
+    /**
+     * Prints all archived notes and the number of archived notes.
+     * Helper method for {@code viewNotes()}
+     */
     private void printArchivedNotes() {
         // Helper method for printActiveAndArchivedReport()
         System.out.println("Number of archived notes: " + noteAPI.numberOfArchivedNotes());
         System.out.println(noteAPI.listArchivedNotes());
     }
 
+    /**
+     * Prints all active notes and the number of active notes.
+     * Helper method for {@code viewNotes()}
+     */
     private void printActiveNotes() {
         // Helper method for printActiveAndArchivedReport()
         System.out.println("Number of active notes: " + noteAPI.numberOfActiveNotes());
@@ -592,11 +727,15 @@ public class Driver {
     /*
     REPORT MENU FOR NOTES Options
     Option 10 - All notes and their items (active & archived)
-    Create a printActiveAndArchivedReport() method in Driver. This method
-        will first print the active notes followed by the archived notes.
+    printActiveAndArchivedReport() method: prints active notes, then archived notes.
     */
+
+    /**
+     * Prints a report (String) showing all active notes with their items, then all archived notes with their items.
+     * If no notes exist, informs the user.
+     * Option 10 in switch.
+     */
     private void printActiveAndArchivedReport() {
-        // Implementation for printing all notes and their items
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved!");
         }
@@ -610,24 +749,29 @@ public class Driver {
 
     /*
     Option 11 - Archive notes whose items are all complete
-    Create an archiveNotesWithAllItemsComplete() method in Driver. This method
-        will archive all active notes whose items are completed
-            (hint: NoteAPI archiveNotesWithAllItemsComplete()).
+    archiveNotesWithAllItemsComplete() method: archives all eligible active notes.
     */
+
+    /**
+     * Archives all active notes whose items are completed and prints the result.
+     * Option 11 in switch.
+     */
     private void archiveNotesWithAllItemsComplete() {
-        // Implementation for archiving notes with all items complete
         System.out.println(noteAPI.archiveNotesWithAllItemsComplete());
     }
 
     /*
     Option 12 - All notes within a selected Category
-    Create a printNotesBySelectedCategory() method in Driver. This method, if:
-    - notes exist, will ask the user to enter a valid category. The applicable
-        noteAPI method is then called to list all notes for that category.
-    - notes don’t exist, inform the user of this.
+    printNotesBySelectedCategory() method: if notes exist, prompts for category, then prints notes in that category.
     */
+
+    /**
+     * Prompts user for a category and prints all notes belonging to that category.
+     * If no notes exist, informs the user. Prompts the user for a category, then validates category and prints.
+     * If this fails, will prompt to try again.
+     * Option 12 in switch.
+     */
     private void printNotesBySelectedCategory() {
-        // Implementation for printing notes by selected category
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved!");
         }
@@ -647,13 +791,16 @@ public class Driver {
 
     /*
     Option 13 - All notes within a selected Priority
-    Create a printNotesByPriority() method in Driver. This method, if:
-    - notes exist, will ask the user to enter a valid priority. The applicable
-        noteAPI method is then called to list all notes for that priority.
-    - notes don’t exist, inform the user of this.
+    printNotesByPriority() method: if notes exist, prompts for a priority, then prints notes in that priority.
     */
+
+    /**
+     * Prompts user for a priority and prints all notes belonging to that priority.
+     * If no notes exist, informs the user. Prompts the user for a priority, then validates priority and prints.
+     * If this fails, will prompt to try again.
+     * Option 13 in switch.
+     */
     private void printNotesByPriority() {
-        // Implementation for printing notes by priority
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved!");
         }
@@ -673,15 +820,15 @@ public class Driver {
 
     /*
     Option 14 - Search for all notes (by note title)
-    Create a searchNotesByTitle() method in Driver. This method, if:
-    - notes exist, will ask the user to enter a title they wish to search notes
-        by.
-      The applicable noteAPI method is then called to list all notes whose title,
-        or subset of their title, match the entered String.
-    - notes don’t exist, inform the user of this.
+    searchNotesByTitle() method: if notes exist, asks user for a search string, prints matches.
     */
+
+    /**
+     * Prompts user for a string to search note titles for a relevant note.
+     * If no notes exist, informs user and asks to try again. If found, searches and prints search results.
+     * Option 14 in switch.
+     */
     private void searchNotesByTitle() {
-        // Implementation for searching notes by title
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved!");
         }
@@ -691,15 +838,17 @@ public class Driver {
         }
     }
 
-
-// ----------------REPORT MENU FOR ITEMS Options--------------------
     /*
+    REPORT MENU FOR ITEMS Options
     Option 15 - All items that are todo (with note title)
-    Create a printAllTodoItems() method in Driver. This method will print all
-        the TODO items to the console.
+    printAllTodoItems() method: prints all TODO items if notes exist, else informs user.
     */
+
+    /**
+     * Prints all to-do items in notes if any exist, otherwise informs user no notes saved.
+     * Option 15 in switch.
+     */
     private void printAllTodoItems() {
-        // Implementation for printing all TODO items
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved!");
         }
@@ -710,13 +859,15 @@ public class Driver {
 
     /*
     Option 16 - Overall number of items todo/complete
-    Create a printOverallItemsTodoComplete() method in Driver. This method, if
-        items exist:
-    - Will print out the number of completed items, followed by the number of
-        TODO items.
+    printOverallItemsTodoComplete() method: prints counts of completed and todo items if notes exist.
     */
+
+    /**
+     * Prints the overall number of completed and to-do items across all notes.
+     * If no notes exist, informs the user.
+     * Option 16 in switch.
+     */
     private void printOverallItemsTodoComplete() {
-        // Implementation for printing overall TODO and completed items count
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved!");
         }
@@ -728,12 +879,15 @@ public class Driver {
 
     /*
     Option 17 - Todo/complete items by specific Category
-    Create a printItemCompletionStatusByCategory() method in Driver. This method, if items exist:
-    - Will ask the user to enter a valid category.
-      This category is then used to list the item status (and number) by category to the user.
+    printItemCompletionStatusByCategory() method: if notes exist, prompts category and prints item status by category.
     */
+
+    /**
+     * Prints the completion status of items filtered by a user-selected category.
+     * If no notes exist or category is invalid, informs the user. Allows retry.
+     * Option 17 in switch.
+     */
     private void printItemCompletionStatusByCategory() {
-        // Implementation for printing item completion status by category
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved!");
         }
@@ -754,14 +908,15 @@ public class Driver {
 
     /*
     Option 18 - Search for all items (by item description)
-    Create a searchItemsByDescription() method in Driver. This method, if:
-    - items exist, will ask the user to enter a description they wish to search items by.
-      The applicable noteAPI method is then called to list all items whose
-        description, or subset of their description, match the entered String.
-    - items don’t exist, inform the user of this.
+    searchItemsByDescription() method: if notes exist, asks user for search text and prints matches.
     */
+
+    /**
+     * Searches items by a description string from user prompt.
+     * If no notes exist, informs user. Otherwise, prints search results.
+     * Option 18 in switch.
+     */
     private void searchItemsByDescription() {
-        // Implementation for searching items by description
         if (noteAPI.numberOfNotes() == 0) {
             System.out.println("No notes saved.");
         }
@@ -771,16 +926,20 @@ public class Driver {
         }
     }
 
-
     // NO OPTION 19
 
     /*
     SETTINGS MENU Options
     Option 20 - Save
-    This method will save the notes ArrayList to an XML file.
+    save() method: saves notes to XML.
     */
+
+    /**
+     * Saves the current state of notes to an XML file using {@link NoteAPI save()}.
+     * Informs the user of success/failure and allows retry if needed.
+     * Option 20 in switch.
+     */
     private void save() {
-        // Implementation for saving notes to XML
         try {
             noteAPI.save();
             System.out.println("Notes saved successfully.");
@@ -794,11 +953,15 @@ public class Driver {
 
     /*
     Option 21 - Load
-    This method will load the notes ArrayList from the XML file that was
-        created in Option 20.
+    load() method: loads notes from XML.
     */
+
+    /**
+     * Loads notes from the XML file using {@link NoteAPI load()}.
+     * Informs the user of success/failure and allows retry if needed.
+     * Option 21 in switch.
+     */
     private void load() {
-        // Implementation for loading notes from XML
         try {
             noteAPI.load();
             System.out.println("Notes loaded successfully.");
@@ -814,8 +977,12 @@ public class Driver {
     Option 0 - Exit
     This option exits the application.
     */
+
+    /**
+     * Exits the application by printing a goodbye message and terminating the program.
+     * Option 0 in switch.
+     */
     private void exitApplication() {
-        // Implementation for exiting the application
         System.out.println("Exiting... goodbye");
         System.exit(0);
     }

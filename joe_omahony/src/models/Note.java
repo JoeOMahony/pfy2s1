@@ -257,7 +257,7 @@ the add.
          */
         String listItemsString = "";
         if ((this.items == null) || (this.items.isEmpty()))  {
-            listItemsString = "No items added";
+            listItemsString = "No items added" + "\n";
         }
         else {
             for (int i = 0; i < this.items.size(); i++) {
@@ -411,7 +411,7 @@ the add.
         // This method builds a user-friendly string representation of the
         // object and returns it e.g.
         return noteTitle + ", " + "Priority=" + notePriority + ", " + "Category=" + noteCategory + ", " + "Archived="
-                + booleanToYN(isNoteArchived()) +  "\n" + this.listItems();
+                + booleanToYN(isNoteArchived()) +  "\n" + this.listItems() + "\n";
     }
 
     /*

@@ -1,0 +1,137 @@
+<object-stream>
+  <list>
+    <models.Note>
+      <noteTitle>Grocery List</noteTitle>
+      <notePriority>2</notePriority>
+      <noteCategory>Home</noteCategory>
+      <isNoteArchived>false</isNoteArchived>
+      <items>
+        <models.Item>
+          <itemDescription>Buy milk</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+        <models.Item>
+          <itemDescription>Buy bread</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+      </items>
+    </models.Note>
+    <models.Note>
+      <noteTitle>Vacation Plan</noteTitle>
+      <notePriority>3</notePriority>
+      <noteCategory>Travel</noteCategory>
+      <isNoteArchived>false</isNoteArchived>
+      <items>
+        <models.Item>
+          <itemDescription>Book flight tickets</itemDescription>
+          <isItemCompleted>true</isItemCompleted>
+        </models.Item>
+        <models.Item>
+          <itemDescription>Reserve hotel</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+      </items>
+    </models.Note>
+    <models.Note>
+      <noteTitle>Math Homework</noteTitle>
+      <notePriority>1</notePriority>
+      <noteCategory>College</noteCategory>
+      <isNoteArchived>true</isNoteArchived>
+      <items/>
+    </models.Note>
+    <models.Note>
+      <noteTitle>Book Wishlist</noteTitle>
+      <notePriority>4</notePriority>
+      <noteCategory>Hobby</noteCategory>
+      <isNoteArchived>false</isNoteArchived>
+      <items>
+        <models.Item>
+          <itemDescription>The Catcher in the Rye</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+        <models.Item>
+          <itemDescription>1984</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+      </items>
+    </models.Note>
+    <models.Note>
+      <noteTitle>Weekly Chores</noteTitle>
+      <notePriority>5</notePriority>
+      <noteCategory>Home</noteCategory>
+      <isNoteArchived>false</isNoteArchived>
+      <items>
+        <models.Item>
+          <itemDescription>Vacuum living room</itemDescription>
+          <isItemCompleted>true</isItemCompleted>
+        </models.Item>
+        <models.Item>
+          <itemDescription>Clean bathroom</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+      </items>
+    </models.Note>
+    <models.Note>
+      <noteTitle>Workout Routine</noteTitle>
+      <notePriority>2</notePriority>
+      <noteCategory>Health</noteCategory>
+      <isNoteArchived>true</isNoteArchived>
+      <items/>
+    </models.Note>
+    <models.Note>
+      <noteTitle>Project Deadline</noteTitle>
+      <notePriority>1</notePriority>
+      <noteCategory>Work</noteCategory>
+      <isNoteArchived>false</isNoteArchived>
+      <items>
+        <models.Item>
+          <itemDescription>Finish draft</itemDescription>
+          <isItemCompleted>true</isItemCompleted>
+        </models.Item>
+        <models.Item>
+          <itemDescription>Submit final report</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+      </items>
+    </models.Note>
+    <models.Note>
+      <noteTitle>Meeting Notes</noteTitle>
+      <notePriority>3</notePriority>
+      <noteCategory>Work</noteCategory>
+      <isNoteArchived>true</isNoteArchived>
+      <items/>
+    </models.Note>
+    <models.Note>
+      <noteTitle>Reading List</noteTitle>
+      <notePriority>4</notePriority>
+      <noteCategory>Hobby</noteCategory>
+      <isNoteArchived>false</isNoteArchived>
+      <items>
+        <models.Item>
+          <itemDescription>Finish 'Dune'</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+        <models.Item>
+          <itemDescription>Start 'Sapiens'</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+      </items>
+    </models.Note>
+    <models.Note>
+      <noteTitle>Car Maintenance</noteTitle>
+      <notePriority>3</notePriority>
+      <noteCategory>Personal</noteCategory>
+      <isNoteArchived>false</isNoteArchived>
+      <items>
+        <models.Item>
+          <itemDescription>Change oil</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+        <models.Item>
+          <itemDescription>Replace wiper blades</itemDescription>
+          <isItemCompleted>false</isItemCompleted>
+        </models.Item>
+      </items>
+    </models.Note>
+  </list>
+</object-stream>

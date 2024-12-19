@@ -144,7 +144,7 @@ Book hotel. [COMPLETED]
     @Override
     public String toString() {
         String itemFormat = "";
-        itemFormat += this.getItemDescription() + ".\t";
+        itemFormat += this.getItemDescription() + ". ";
         if (this.isItemCompleted()) {
             itemFormat += "[Completed]";
         }

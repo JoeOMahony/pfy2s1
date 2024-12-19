@@ -87,11 +87,11 @@ public class CategoryUtility {
         }
 
         for (String cat : categories) {
+            category = categoryFormatter(category);
             if (category.equals(cat)) { // We haven't overridden String implementation
                 return true;
             }
         }
-
         return false;
     }
 

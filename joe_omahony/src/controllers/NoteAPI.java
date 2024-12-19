@@ -392,14 +392,14 @@ public class NoteAPI {
                  (including their index number)
         */
         if ((notes == null) || (notes.isEmpty())) {
-            return "No notes stored";
+            return "\tNo notes stored";
         }
 
         String allNotes = "";
 
         for (int i = 0; i < notes.size(); i++) {
             Note note = notes.get(i);
-            allNotes += i + ": " + note.toString();
+            allNotes += "\t" + i + ": " + note.toString();
         }
 
         return allNotes;
@@ -727,8 +727,10 @@ public class NoteAPI {
             if ((note.getItems() != null) && !(note.getItems().isEmpty())) {
                 for (Item item : note.getItems()) {
                     if (item.getItemDescription().contains(searchItemDescription)) {
-                        searchResultsByDescription += notes.indexOf(note) + ": " +
-                                note.getNoteTitle() + "\n" + notes.indexOf(item) +": " + item.toString() + "\n";
+                        int noteIndex = notes.indexOf(note); // explicit because getting confusing with multiple indexes
+                        int itemIndex = note.getItems().indexOf(item);
+                        searchResultsByDescription += noteIndex + ": " + note.getNoteTitle() + "\n"
+                                + itemIndex + ": " + item.toString() + "\n";
                     }
                 }
             }

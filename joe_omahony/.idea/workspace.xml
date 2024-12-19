@@ -5,93 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95686352-a09c-46fe-9f38-074d647c8a88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter_5_10_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/allclasses-index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/allpackages-index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/controllers/NoteAPI.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/controllers/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/controllers/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/element-list" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/help-doc.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/index-all.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/legal/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/legal/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/legal/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/legal/dejavufonts.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/legal/jquery.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/legal/jqueryUI.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/main/Driver.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/main/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/main/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/member-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/models/Item.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/models/Note.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/models/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/models/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/module-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/overview-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/overview-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/package-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/copy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-Bold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-BoldOblique.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-BoldOblique.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-Oblique.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans-Oblique.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSans.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-Bold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-BoldOblique.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-BoldOblique.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-Oblique.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono-Oblique.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSansMono.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-Bold.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-BoldItalic.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-BoldItalic.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-Italic.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif-Italic.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/DejaVuLGCSerif.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/fonts/dejavu.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/glass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/jquery-ui.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/link.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/resource-files/x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/script-files/jquery-3.7.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/script-files/jquery-ui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/script-files/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/script-files/search-page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/script-files/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/search.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tag-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/type-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/utils/CategoryUtility.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/utils/ScannerInput.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/utils/Utilities.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/utils/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/utils/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/NoteAPITest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/ItemTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/NoteTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/CategoryUtilityTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/UtilitiesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/joe_omahony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/joe_omahony.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/NoteAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/NoteAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/NoteAPITest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ItemTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Note.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/NoteTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/ScannerInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ScannerInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/CategoryUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/CategoryUtility.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="test" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -108,8 +51,8 @@
 }</component>
   <component name="JavaAutoRunManager">
     <enabled-run-configurations>
-      <run-configuration type="JUnit" name="NoteAPITest" />
       <run-configuration type="JUnit" name="ItemTest" />
+      <run-configuration type="JUnit" name="NoteAPITest" />
     </enabled-run-configurations>
   </component>
   <component name="ProblemsViewState">
@@ -131,11 +74,13 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Driver.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CategoryUtilityTest.executor": "Run",
     "JUnit.ItemTest.executor": "Run",
     "JUnit.NoteAPITest$FindingSearchingMethods.searchNotesByTitleReturnsNotesFoundWhenArrayListHasNotesMatchingSearchTitle.executor": "Run",
-    "JUnit.NoteAPITest.executor": "Debug",
+    "JUnit.NoteAPITest.executor": "Run",
     "JUnit.NoteTest$BoilerPlateTests.toStringContainsAllFieldsInObject.executor": "Coverage",
     "JUnit.NoteTest.executor": "Run",
+    "JUnit.UtilitiesTest.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -156,7 +101,22 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.NoteTest">
+  <component name="RunManager" selected="JUnit.UtilitiesTest">
+    <configuration name="CategoryUtilityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joe_omahony" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="utils" />
+      <option name="MAIN_CLASS_NAME" value="utils.CategoryUtilityTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ItemTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joe_omahony" />
       <extension name="coverage">
@@ -168,22 +128,6 @@
       <option name="PACKAGE_NAME" value="models" />
       <option name="MAIN_CLASS_NAME" value="models.ItemTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NoteAPITest$FindingSearchingMethods.searchNotesByTitleReturnsNotesFoundWhenArrayListHasNotesMatchingSearchTitle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joe_omahony" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="controllers.NoteAPITest" />
-      <option name="MAIN_CLASS_NAME" value="controllers.NoteAPITest$FindingSearchingMethods" />
-      <option name="METHOD_NAME" value="searchNotesByTitleReturnsNotesFoundWhenArrayListHasNotesMatchingSearchTitle" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -203,22 +147,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NoteTest$BoilerPlateTests.toStringContainsAllFieldsInObject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joe_omahony" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="models.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="models.NoteTest" />
-      <option name="MAIN_CLASS_NAME" value="models.NoteTest$BoilerPlateTests" />
-      <option name="METHOD_NAME" value="toStringContainsAllFieldsInObject" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="NoteTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joe_omahony" />
       <extension name="coverage">
@@ -234,13 +162,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UtilitiesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joe_omahony" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="utils" />
+      <option name="MAIN_CLASS_NAME" value="utils.UtilitiesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UtilitiesTest" />
+        <item itemvalue="JUnit.CategoryUtilityTest" />
         <item itemvalue="JUnit.NoteTest" />
         <item itemvalue="JUnit.ItemTest" />
         <item itemvalue="JUnit.NoteAPITest" />
-        <item itemvalue="JUnit.NoteTest$BoilerPlateTests.toStringContainsAllFieldsInObject" />
-        <item itemvalue="JUnit.NoteAPITest$FindingSearchingMethods.searchNotesByTitleReturnsNotesFoundWhenArrayListHasNotesMatchingSearchTitle" />
       </list>
     </recent_temporary>
   </component>

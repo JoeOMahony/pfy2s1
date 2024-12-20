@@ -257,11 +257,11 @@ the add.
          */
         String listItemsString = "";
         if ((this.items == null) || (this.items.isEmpty()))  {
-            listItemsString = "No items added" + "\n";
+            listItemsString = "\tNo items added" + "\n";
         }
         else {
             for (int i = 0; i < this.items.size(); i++) {
-                listItemsString += i + ": " + this.items.get(i).toString() + "\n";
+                listItemsString += "\t" + i + ": " + this.items.get(i).toString() + "\n";
             }
         }
         return listItemsString;

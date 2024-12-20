@@ -399,7 +399,7 @@ public class NoteAPI {
 
         for (int i = 0; i < notes.size(); i++) {
             Note note = notes.get(i);
-            allNotes += "\t" + i + ": " + note.toString();
+            allNotes += i + ": " + note.toString();
         }
 
         return allNotes;

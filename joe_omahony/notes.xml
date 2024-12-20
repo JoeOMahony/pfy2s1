@@ -108,11 +108,11 @@
       <isNoteArchived>false</isNoteArchived>
       <items>
         <models.Item>
-          <itemDescription>Finish 'Dune'</itemDescription>
+          <itemDescription>Finish &apos;Dune&apos;</itemDescription>
           <isItemCompleted>false</isItemCompleted>
         </models.Item>
         <models.Item>
-          <itemDescription>Start 'Sapiens'</itemDescription>
+          <itemDescription>Start &apos;Sapiens&apos;</itemDescription>
           <isItemCompleted>false</isItemCompleted>
         </models.Item>
       </items>

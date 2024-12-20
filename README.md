@@ -33,7 +33,7 @@ joe_omahony/
 │  └─ utils/       # Package for utility classes for general utilities, categories, input handling, etc. (Utilities, CategoryUtility, ScannerInput, UtilitiesTest, CategoryUtilityTest)
 ├─ joe_omahony.iml # IntelliJ project file (metadata)
 ├─ notes.xml       # Pre-populated data file with Notes and Items covering full program functionality (XStream)
-└─ README.md       # This read-me
+└─ README.md       # This README
 ```
   
 
@@ -42,10 +42,16 @@ joe_omahony/
 1. Navigate to the [joe_omahony/src/main](src/main) directory<br />
 2. Compile and run [Driver.java](src/main/Driver.java) using your preferred IDE or command line<br /> 
 
-## Documentation
-For detailed class and API information, open [docs/index.html](docs/index.html)  in your web browser. This includes details on available classes, methods, and utilities generated from JavaDoc.  
+## Changes Made to Provided Classes
+As discussed in the video, 
+* One method, `tryAgain()`, was added to the [Utilities](src/utils/Utilities.java) class. <br />  
+* One method, `categoryFormatter()`, was added to the [CategoryUtility](src/utils/CategoryUtility.java) class.  
+  * One class, `isValidCategory()` , in the [CategoryUtility](src/utils/CategoryUtility.java) class was modified to accommodate the above `categoryFormatter()` addition.  <br />
 
-  
+These modifications had **no effect** on the successful outcome of all provided test cases.
+
+## Documentation
+For detailed class and API information, open [docs/index.html](docs/index.html)  in your web browser. This includes details on available classes, methods, and utilities generated from JavaDoc.
 
 ## Dependencies
 

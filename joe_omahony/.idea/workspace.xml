@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="95686352-a09c-46fe-9f38-074d647c8a88" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/NoteAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/NoteAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Note.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +91,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.CategoryUtilityTest">
+  <component name="RunManager" selected="JUnit.NoteAPITest">
     <configuration name="CategoryUtilityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joe_omahony" />
       <extension name="coverage">
@@ -172,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CategoryUtilityTest" />
-        <item itemvalue="JUnit.UtilitiesTest" />
-        <item itemvalue="JUnit.ItemTest" />
-        <item itemvalue="JUnit.NoteTest" />
         <item itemvalue="JUnit.NoteAPITest" />
+        <item itemvalue="JUnit.NoteTest" />
+        <item itemvalue="JUnit.ItemTest" />
+        <item itemvalue="JUnit.UtilitiesTest" />
+        <item itemvalue="JUnit.CategoryUtilityTest" />
       </list>
     </recent_temporary>
   </component>
@@ -201,6 +198,8 @@
       <workItem from="1734463942088" duration="6481000" />
       <workItem from="1734534233046" duration="17176000" />
       <workItem from="1734695743193" duration="3702000" />
+      <workItem from="1734707250160" duration="49000" />
+      <workItem from="1734707301189" duration="23000" />
     </task>
     <servers />
   </component>

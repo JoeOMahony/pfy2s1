@@ -136,8 +136,8 @@ Book hotel. [COMPLETED]
      * Sample output <b>straight from assignment spec (Author: Dave Hearne)</b>: <br />
      * Secondary School 3:30. [Completed] <br />
      * Primary School 2.30. [TODO] <br />
-     * Book flights. [Completed] <br />
-     * Book hotel. [Completed] <br />
+     * Book flights. [COMPLETED] <br />
+     * Book hotel. [COMPLETED] <br />
      *
      * @return a friendly String representation of the current item object's state.
      */
